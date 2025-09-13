@@ -10,6 +10,7 @@ initActiveNavigation();
 initProjectFiltering();
 initContactForm();
 initTypewriter();
+initResumeDownload();
 });
 
 // Theme Toggle Functionality - Fixed
@@ -214,6 +215,139 @@ card.classList.add('hidden');
 });
 });
 });
+}
+
+// Enhanced Resume Download Functionality
+function initResumeDownload() {
+const downloadBtn = document.getElementById('downloadResumeBtn');
+
+if (!downloadBtn) return;
+
+downloadBtn.addEventListener('click', function(e) {
+e.preventDefault();
+e.stopPropagation();
+
+const originalText = this.textContent;
+const originalIcon = this.innerHTML;
+
+// Show downloading state
+this.innerHTML = '⏳ Preparing Download...';
+this.disabled = true;
+
+// Create resume content programmatically as fallback
+const resumeContent = createResumeContent();
+
+try {
+// Try to create and download the PDF
+downloadResumePDF(resumeContent);
+
+// Show success state
+setTimeout(() => {
+this.innerHTML = '✅ Downloaded!';
+setTimeout(() => {
+this.innerHTML = originalIcon;
+this.disabled = false;
+}, 2000);
+}, 1000);
+
+} catch (error) {
+console.warn('PDF download failed, falling back to text download:', error);
+
+// Fallback to text file
+downloadResumeText(resumeContent);
+
+// Show success state
+setTimeout(() => {
+this.innerHTML = '✅ Downloaded as Text!';
+setTimeout(() => {
+this.innerHTML = originalIcon;
+this.disabled = false;
+}, 2000);
+}, 1000);
+}
+});
+
+function createResumeContent() {
+return `
+KAUSTUBH PANDEY
+Electronics & Communication Engineering (VLSI)
+Phone: +91-9636379818
+Email: kaustubhofficial.kp@gmail.com
+LinkedIn: linkedin.com/in/kaustubh-pandey-b42082218
+GitHub: github.com/KPkaustubhKP
+
+EDUCATION
+Manipal Institute of Technology
+B.Tech in Electronics & Communication (VLSI)
+Aug 2022 – Present | Manipal, Karnataka
+Current CGPA: 7.84 / 10 (as of 3rd Semester)
+
+RELEVANT COURSEWORK
+• VLSI Design
+• Digital IC Design  
+• Analog Circuits
+• FPGA System Design
+• Semiconductor Physics
+• Signals & Systems
+• Verilog HDL
+• Embedded Systems
+
+EXPERIENCE
+
+VLSI System Design – PCB Design Intern
+Feb 2025 – Mar 2025 | PCB Designer | Manipal, India
+• Designed and laid out the evaluation board for the Thejas32 processor (by Vega Processor & CDAC) using KiCad, including schematic capture and PCB layout
+• Applied high-speed routing and impedance control techniques for optimal signal integrity
+• Generated manufacturing-ready Gerber files for production
+
+Project MANAS – Hardware Subsystem, Autonomous UGV Team  
+June 2023 – Present | Hardware Engineer | Manipal, India
+• Designed power distribution boards (PDB) for autonomous UGVs with robust thermal handling and high-current switching
+• Implemented precise current sensing using the INA226 current-sense IC to monitor load currents
+• Developed motor and microcontroller interface boards
+• Led PCB design using KiCad and coordinated manufacturing with Lion Circuits
+• Integrated CAN-bus communication using MCP2542FD transceivers for reliable subsystem messaging
+
+PROJECTS
+
+PID Motor Controller | Verilog, Vivado, Icarus Verilog, GTKWave
+May 2025
+• Designed and implemented a digital PID controller in Verilog to regulate DC motor speed via encoder feedback
+• Synthesized the design with Vivado for deployment on FPGA development board
+• Simulated the controller using Icarus Verilog and analyzed waveforms with GTKWave to validate functionality
+
+TECHNICAL SKILLS
+Languages: Verilog, C, Python, Bash, LaTeX
+Tools: KiCad, Vivado, Icarus Verilog, GTKWave, Cadence, LTSpice, Arduino IDE  
+Technologies: PCB Design, FPGA, Embedded Systems, Analog Design, Power Electronics, VLSI Design
+
+LEADERSHIP / EXTRACURRICULAR
+
+Project MANAS – Autonomous UGV Team
+June 2023 – Present | Hardware Engineer & R&D Contributor
+Manipal Institute of Technology
+• Collaborated with AI and perception teams on sensor-fusion hardware design for real-time navigation
+• Mentored junior teammates on KiCad workflow, component selection, and design-for-manufacturability  
+• Secured 3rd place in the AutoNav Challenge at IGVC 2025, representing MIT with a fully autonomous UGV platform
+`;
+}
+
+function downloadResumePDF(content) {
+// This is a simplified approach - in a real implementation, you'd use a PDF library
+throw new Error('PDF generation not available, using text fallback');
+}
+
+function downloadResumeText(content) {
+const blob = new Blob([content], { type: 'text/plain' });
+const url = window.URL.createObjectURL(blob);
+const link = document.createElement('a');
+link.href = url;
+link.download = 'Kaustubh_Pandey_Resume.txt';
+document.body.appendChild(link);
+link.click();
+document.body.removeChild(link);
+window.URL.revokeObjectURL(url);
+}
 }
 
 // Enhanced Contact Form for Email Integration
