@@ -39,6 +39,7 @@
     <!-- Hero Section -->
     <section class="hero" id="home">
         <div class="hero-background-animation"></div>
+        <div class="hero-particles"></div>
         <div class="container">
             <div class="hero-content">
                 <div class="hero-title">
@@ -69,14 +70,12 @@
                         Currently, I'm contributing to Project MANAS as part of the SNA (Sensor and Actuation) subsystem team, where I work on hardware development and sensor integration for autonomous vehicle systems.
                     </p>
                     <div class="about-interests">
-                        <h3>My Interests</h3>
+                        <h3>Areas of Interest</h3>
                         <ul>
                             <li>VLSI Design & Semiconductor Technology</li>
-                            <li>RTL-to-GDS flows, ASICs, and neuromorphic architectures</li>
                             <li>AI & Hardware Acceleration</li>
-                            <li>Systolic arrays, TPUs, and custom processor design</li>
-                            <li>Research & Innovation - Patent-worthy projects</li>
-                            <li>Hardware-software co-design</li>
+                            <li>Research & Innovation</li>
+                            <li>Practical Engineering</li>
                         </ul>
                     </div>
                 </div>
@@ -95,8 +94,8 @@
         <div class="container">
             <h2 class="section-title">Featured Projects</h2>
             <div class="projects-grid">
-                <!-- VLSI Project -->
-                <div class="project-card featured" data-category="vlsi">
+                <!-- Hardware Project (Thejas32) -->
+                <div class="project-card featured" data-category="hardware">
                     <div class="project-header">
                         <h3>VLSI System Design - Thejas32 Evaluation Board</h3>
                         <span class="project-status completed">Completed</span>
@@ -114,7 +113,7 @@
                     </div>
                 </div>
 
-                <!-- Hardware Project -->
+                <!-- Hardware Project (MANAS) -->
                 <div class="project-card featured" data-category="hardware">
                     <div class="project-header">
                         <h3>Project MANAS - Autonomous UGV Hardware</h3>
@@ -134,13 +133,13 @@
                     </div>
                 </div>
 
-                <!-- FPGA Project -->
-                <div class="project-card" data-category="fpga">
+                <!-- VLSI Project (PID Controller) -->
+                <div class="project-card" data-category="vlsi">
                     <div class="project-header">
                         <h3>Digital PID Motor Controller</h3>
                         <span class="project-status completed">Completed</span>
                     </div>
-                    <div class="project-role">FPGA Developer</div>
+                    <div class="project-role">VLSI Developer</div>
                     <p class="project-description">
                         Designed and implemented a digital PID controller in Verilog to regulate DC motor speed via encoder feedback. Synthesized the design with Vivado for FPGA deployment and validated functionality through comprehensive simulation.
                     </p>
@@ -163,8 +162,8 @@
                 <button class="filter-btn" data-filter="fpga">FPGA</button>
             </div>
             <div class="all-projects-grid">
-                <!-- Same projects repeated for filtering -->
-                <div class="project-card" data-category="vlsi">
+                <!-- Hardware Project (Thejas32) -->
+                <div class="project-card" data-category="hardware">
                     <div class="project-header">
                         <h3>VLSI System Design - Thejas32 Evaluation Board</h3>
                         <span class="project-status completed">Completed</span>
@@ -196,12 +195,12 @@
                     </div>
                 </div>
 
-                <div class="project-card" data-category="fpga">
+                <div class="project-card" data-category="vlsi">
                     <div class="project-header">
                         <h3>Digital PID Motor Controller</h3>
                         <span class="project-status completed">Completed</span>
                     </div>
-                    <div class="project-role">FPGA Developer</div>
+                    <div class="project-role">VLSI Developer</div>
                     <p class="project-description">
                         Verilog-based PID controller for DC motor speed regulation with encoder feedback.
                     </p>
@@ -281,9 +280,9 @@
                                 <span class="stat-label">Internships</span>
                             </div>
                         </div>
-                        <a href="KP_Resume.pdf" download="Kaustubh_Pandey_Resume.pdf" class="btn btn--primary btn--lg">
+                        <button id="downloadResumeBtn" class="btn btn--primary btn--lg">
                             📥 Download Resume
-                        </a>
+                        </button>
                     </div>
                 </div>
             </div>
