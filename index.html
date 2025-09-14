@@ -20,11 +20,12 @@
                 <li><a href="#about" class="nav-link">About</a></li>
                 <li><a href="#projects" class="nav-link">Projects</a></li>
                 <li><a href="#skills" class="nav-link">Skills</a></li>
+                <li><a href="#blogs" class="nav-link">Blogs</a></li>
                 <li><a href="#resume" class="nav-link">Resume</a></li>
                 <li><a href="#contact" class="nav-link">Contact</a></li>
                 <li>
                     <button class="theme-toggle" id="theme-toggle" aria-label="Toggle theme">
-                        <span class="theme-toggle-icon">🌙</span>
+                        <span class="theme-toggle-icon">☀️</span>
                     </button>
                 </li>
             </ul>
@@ -36,10 +37,14 @@
         </div>
     </nav>
 
-    <!-- Hero Section -->
+    <!-- Hero Section with VLSI Circuit Background -->
     <section class="hero" id="home">
-        <div class="hero-background-animation"></div>
-        <div class="hero-particles"></div>
+        <div class="hero-circuit-background">
+            <div class="circuit-pattern"></div>
+            <div class="circuit-nodes"></div>
+            <div class="circuit-traces"></div>
+        </div>
+        <div class="hero-overlay"></div>
         <div class="container">
             <div class="hero-content">
                 <div class="hero-title">
@@ -67,7 +72,7 @@
                         I'm an Electronics & Communication Engineering student specializing in VLSI Design & Technology at Manipal Institute of Technology. My passion lies in creating innovative hardware solutions and exploring the fascinating world of semiconductor technology.
                     </p>
                     <p>
-                        Currently, I'm contributing to Project MANAS as part of the SNA (Sensor and Automation) subsystem team, where I work on hardware development and sensor integration for autonomous vehicle systems.
+                        Currently, I'm contributing to Project MANAS as part of the SNA (Sensor and Actuation) subsystem team, where I work on hardware development and sensor integration for autonomous vehicle systems.
                     </p>
                     <div class="about-interests">
                         <h3>Areas of Interest</h3>
@@ -121,12 +126,14 @@
                     </div>
                     <div class="project-role">Hardware Engineer</div>
                     <p class="project-description">
-                        Designed power distribution boards (PDB) for autonomous UGVs with robust thermal handling and high-current switching. Developed motor/microcontroller interface boards with CAN-bus communication.
+                        Designed power distribution boards (PDB) for autonomous UGVs with robust thermal handling and high-current switching. Implemented precise current sensing using INA226 IC and developed motor/microcontroller interface boards with CAN-bus communication.
                     </p>
                     <div class="project-technologies">
                         <span class="tech-tag">KiCad</span>
                         <span class="tech-tag">Power Electronics</span>
+                        <span class="tech-tag">INA226</span>
                         <span class="tech-tag">CAN-bus</span>
+                        <span class="tech-tag">MCP2542FD</span>
                         <span class="tech-tag">PCB Design</span>
                     </div>
                 </div>
@@ -188,6 +195,7 @@
                     </p>
                     <div class="project-technologies">
                         <span class="tech-tag">Power Electronics</span>
+                        <span class="tech-tag">INA226</span>
                         <span class="tech-tag">CAN-bus</span>
                     </div>
                 </div>
@@ -253,43 +261,173 @@
         </div>
     </section>
 
-    <!-- Resume Section -->
-   <section class="resume" id="resume">
-    <div class="container">
-        <h2 class="section-title">Resume</h2>
-        <div class="resume-content">
-            <div class="resume-preview">
-                <div class="resume-card">
-                    <div class="resume-icon">📄</div>
-                    <h3>Download My Resume</h3>
-                    <p>Get a comprehensive overview of my education, experience, projects, and technical skills in VLSI design and hardware development.</p>
-                    <div class="resume-stats">
-                        <div class="stat">
-                            <span class="stat-number">7.84</span>
-                            <span class="stat-label">CGPA</span>
-                        </div>
-                        <div class="stat">
-                            <span class="stat-number">3+</span>
-                            <span class="stat-label">Projects</span>
-                        </div>
-                        <div class="stat">
-                            <span class="stat-number">2</span>
-                            <span class="stat-label">Internships</span>
+    <!-- Blogs Section -->
+    <section class="blogs" id="blogs">
+        <div class="container">
+            <h2 class="section-title">Technical Blogs</h2>
+            <p class="blogs-intro">Sharing insights on VLSI design, hardware development, and emerging technologies in semiconductor engineering.</p>
+            
+            <div class="blogs-grid">
+                <div class="blog-card">
+                    <div class="blog-image">
+                        <div class="blog-placeholder">
+                            <span>📝</span>
                         </div>
                     </div>
-                    <!-- FIXED: Your Google Drive Direct Download -->
-                    <a href="https://drive.google.com/uc?export=download&id=1ABBRMAlDGMKgTIRbXp9XmNFMHZoEv2N5" 
-                       download="Kaustubh_Pandey_Resume.pdf" 
-                       class="btn btn--primary btn--lg"
-                       target="_blank">
-                        📥 Download Resume
-                    </a>
+                    <div class="blog-content">
+                        <div class="blog-category">VLSI Design</div>
+                        <h3>Understanding RTL-to-GDSII Flow: A Complete Guide</h3>
+                        <p class="blog-excerpt">
+                            Exploring the complete semiconductor design flow from Register Transfer Level to GDSII layout, covering synthesis, place & route, and physical verification steps.
+                        </p>
+                        <div class="blog-meta">
+                            <span class="blog-date">Coming Soon</span>
+                            <span class="blog-read-time">8 min read</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="blog-card">
+                    <div class="blog-image">
+                        <div class="blog-placeholder">
+                            <span>⚡</span>
+                        </div>
+                    </div>
+                    <div class="blog-content">
+                        <div class="blog-category">Hardware Design</div>
+                        <h3>High-Speed PCB Design: Signal Integrity Fundamentals</h3>
+                        <p class="blog-excerpt">
+                            Deep dive into signal integrity challenges in high-speed PCB design, covering transmission lines, crosstalk, and design guidelines for optimal performance.
+                        </p>
+                        <div class="blog-meta">
+                            <span class="blog-date">Coming Soon</span>
+                            <span class="blog-read-time">12 min read</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="blog-card">
+                    <div class="blog-image">
+                        <div class="blog-placeholder">
+                            <span>🔬</span>
+                        </div>
+                    </div>
+                    <div class="blog-content">
+                        <div class="blog-category">Research</div>
+                        <h3>AI Hardware Acceleration: From CPUs to Custom ASICs</h3>
+                        <p class="blog-excerpt">
+                            Analyzing the evolution of AI compute hardware, from traditional processors to specialized AI accelerators, TPUs, and neuromorphic architectures.
+                        </p>
+                        <div class="blog-meta">
+                            <span class="blog-date">Coming Soon</span>
+                            <span class="blog-read-time">15 min read</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="blog-card">
+                    <div class="blog-image">
+                        <div class="blog-placeholder">
+                            <span>🛠️</span>
+                        </div>
+                    </div>
+                    <div class="blog-content">
+                        <div class="blog-category">Tutorial</div>
+                        <h3>FPGA Development with Vivado: Best Practices</h3>
+                        <p class="blog-excerpt">
+                            Comprehensive guide to FPGA development using Xilinx Vivado, covering project setup, synthesis optimization, and debugging techniques.
+                        </p>
+                        <div class="blog-meta">
+                            <span class="blog-date">Coming Soon</span>
+                            <span class="blog-read-time">10 min read</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="blog-card">
+                    <div class="blog-image">
+                        <div class="blog-placeholder">
+                            <span>📊</span>
+                        </div>
+                    </div>
+                    <div class="blog-content">
+                        <div class="blog-category">Project Log</div>
+                        <h3>Building an Autonomous UGV: Hardware Insights</h3>
+                        <p class="blog-excerpt">
+                            Behind-the-scenes look at Project MANAS hardware development, covering power distribution, sensor integration, and CAN bus implementation.
+                        </p>
+                        <div class="blog-meta">
+                            <span class="blog-date">Coming Soon</span>
+                            <span class="blog-read-time">14 min read</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="blog-card">
+                    <div class="blog-image">
+                        <div class="blog-placeholder">
+                            <span>🔧</span>
+                        </div>
+                    </div>
+                    <div class="blog-content">
+                        <div class="blog-category">Industry Insights</div>
+                        <h3>The Future of Semiconductor Manufacturing</h3>
+                        <p class="blog-excerpt">
+                            Exploring emerging trends in semiconductor technology, from EUV lithography to quantum computing implications for chip design.
+                        </p>
+                        <div class="blog-meta">
+                            <span class="blog-date">Coming Soon</span>
+                            <span class="blog-read-time">11 min read</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="blogs-cta">
+                <p>More technical articles coming soon! Follow me on LinkedIn for updates.</p>
+                <a href="https://www.linkedin.com/in/kaustubh-pandey-b42082218/" target="_blank" class="btn btn--outline">
+                    Follow on LinkedIn
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Resume Section -->
+    <section class="resume" id="resume">
+        <div class="container">
+            <h2 class="section-title">Resume</h2>
+            <div class="resume-content">
+                <div class="resume-preview">
+                    <div class="resume-card">
+                        <div class="resume-icon">📄</div>
+                        <h3>Download My Resume</h3>
+                        <p>Get a comprehensive overview of my education, experience, projects, and technical skills in VLSI design and hardware development.</p>
+                        <div class="resume-stats">
+                            <div class="stat">
+                                <span class="stat-number">7.84</span>
+                                <span class="stat-label">CGPA</span>
+                            </div>
+                            <div class="stat">
+                                <span class="stat-number">3+</span>
+                                <span class="stat-label">Projects</span>
+                            </div>
+                            <div class="stat">
+                                <span class="stat-number">2</span>
+                                <span class="stat-label">Internships</span>
+                            </div>
+                        </div>
+                        <!-- Google Drive Direct Download -->
+                        <a href="https://drive.google.com/uc?export=download&id=1ABBRMAlDGMKgTIRbXp9XmNFMHZoEv2N5" 
+                           download="Kaustubh_Pandey_Resume.pdf" 
+                           class="btn btn--primary btn--lg"
+                           target="_blank">
+                            📥 Download Resume
+                        </a>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
-</section>
-
+    </section>
 
     <!-- Achievements Section -->
     <section class="achievements" id="achievements">
@@ -316,12 +454,12 @@
                     <div class="achievement-year">2023</div>
                     <div class="achievement-content">
                         <h3>Selected for Project MANAS</h3>
-                        <p>Chosen as hardware contributor for MIT's premier autonomous vehicle project, focusing on sensor and Automation subsystem.</p>
+                        <p>Chosen as hardware contributor for MIT's premier autonomous vehicle project, focusing on sensor and actuation subsystem.</p>
                         <span class="achievement-category">Team Achievement</span>
                     </div>
                 </div>
                 <div class="achievement-item">
-                    <div class="achievement-year">2023</div>
+                    <div class="achievement-year">2022</div>
                     <div class="achievement-content">
                         <h3>VLSI Specialization Track</h3>
                         <p>Admitted to prestigious VLSI Design & Technology specialization at Manipal Institute of Technology.</p>
