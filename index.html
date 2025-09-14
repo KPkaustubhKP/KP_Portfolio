@@ -62,37 +62,77 @@
         </div>
     </section>
 
-    <!-- About Section -->
-    <section class="about" id="about">
-        <div class="container">
-            <h2 class="section-title">About Me</h2>
-            <div class="about-content">
-                <div class="about-text">
-                    <p>
-                        I'm an Electronics & Communication Engineering student specializing in VLSI Design & Technology at Manipal Institute of Technology. My passion lies in creating innovative hardware solutions and exploring the fascinating world of semiconductor technology.
-                    </p>
-                    <p>
-                        Currently, I'm contributing to Project MANAS as part of the SNA (Sensor and Actuation) subsystem team, where I work on hardware development and sensor integration for autonomous vehicle systems.
-                    </p>
-                    <div class="about-interests">
-                        <h3>Areas of Interest</h3>
-                        <ul>
-                            <li>VLSI Design & Semiconductor Technology</li>
-                            <li>AI & Hardware Acceleration</li>
-                            <li>Research & Innovation</li>
-                            <li>Practical Engineering</li>
-                        </ul>
-                    </div>
+  <!-- About Section with Profile Image -->
+<section class="about" id="about">
+    <div class="container">
+        <h2 class="section-title">About Me</h2>
+        <div class="about-content">
+            <div class="about-text">
+                <p>
+                    I'm an Electronics & Communication Engineering student specializing in VLSI Design & Technology at Manipal Institute of Technology. My passion lies in creating innovative hardware solutions and exploring the fascinating world of semiconductor technology.
+                </p>
+                <p>
+                    Currently, I'm contributing to Project MANAS as part of the SNA (Sensor and Actuation) subsystem team, where I work on hardware development and sensor integration for autonomous vehicle systems.
+                </p>
+                <div class="about-interests">
+                    <h3>Areas of Interest</h3>
+                    <ul>
+                        <li>VLSI Design & Semiconductor Technology</li>
+                        <li>AI & Hardware Acceleration</li>
+                        <li>Research & Innovation</li>
+                        <li>Practical Engineering</li>
+                    </ul>
                 </div>
-                <div class="about-image">
-                    <div class="image-placeholder">
-                        <span>📷</span>
-                        <p>Profile Image</p>
+            </div>
+            <div class="about-image">
+                <div class="profile-photo">
+                    <!-- Multiple fallback methods for reliable image loading -->
+                    <img id="profile-image" 
+                         src="https://raw.githubusercontent.com/KPkaustubhKP/KPkaustubhKP.github.io/main/profile-photo.jpg" 
+                         alt="Kaustubh Pandey - VLSI Designer" 
+                         class="profile-img"
+                         onerror="this.onerror=null; this.src='./profile-photo.jpg'; if(this.complete && this.naturalHeight===0) { this.style.display='none'; document.getElementById('profile-fallback').style.display='flex'; }"
+                         onload="console.log('Profile image loaded successfully'); this.style.display='block';">
+                    
+                    <!-- Fallback placeholder (shows if image fails) -->
+                    <div class="profile-placeholder" id="profile-fallback" style="display: none;">
+                        <span>👤</span>
+                        <p>Kaustubh Pandey</p>
+                        <small>VLSI Designer</small>
                     </div>
                 </div>
             </div>
         </div>
-    </section>
+    </div>
+</section>
+
+<script>
+// Enhanced image fallback handling
+document.addEventListener('DOMContentLoaded', function() {
+    const profileImage = document.getElementById('profile-image');
+    const profileFallback = document.getElementById('profile-fallback');
+    
+    // Handle image load errors
+    profileImage.addEventListener('error', function() {
+        console.log('Profile image failed to load, showing fallback');
+        this.style.display = 'none';
+        profileFallback.style.display = 'flex';
+    });
+    
+    // Check if image loaded successfully
+    profileImage.addEventListener('load', function() {
+        console.log('Profile image loaded successfully');
+        this.style.display = 'block';
+        profileFallback.style.display = 'none';
+    });
+    
+    // Handle case where image is already cached but failed
+    if (profileImage.complete && profileImage.naturalHeight === 0) {
+        profileImage.style.display = 'none';
+        profileFallback.style.display = 'flex';
+    }
+});
+</script>
 
     <!-- Projects Section -->
     <section class="projects" id="projects">
