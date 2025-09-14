@@ -20,12 +20,11 @@
                 <li><a href="#about" class="nav-link">About</a></li>
                 <li><a href="#projects" class="nav-link">Projects</a></li>
                 <li><a href="#skills" class="nav-link">Skills</a></li>
-                <li><a href="#blogs" class="nav-link">Blogs</a></li>
                 <li><a href="#resume" class="nav-link">Resume</a></li>
                 <li><a href="#contact" class="nav-link">Contact</a></li>
                 <li>
                     <button class="theme-toggle" id="theme-toggle" aria-label="Toggle theme">
-                        <span class="theme-toggle-icon">☀️</span>
+                        <span class="theme-toggle-icon">🌙</span>
                     </button>
                 </li>
             </ul>
@@ -37,14 +36,9 @@
         </div>
     </nav>
 
-    <!-- Hero Section with VLSI Circuit Background -->
+    <!-- Hero Section -->
     <section class="hero" id="home">
-        <div class="hero-circuit-background">
-            <div class="circuit-pattern"></div>
-            <div class="circuit-nodes"></div>
-            <div class="circuit-traces"></div>
-        </div>
-        <div class="hero-overlay"></div>
+        <div class="hero-background-animation"></div>
         <div class="container">
             <div class="hero-content">
                 <div class="hero-title">
@@ -62,85 +56,47 @@
         </div>
     </section>
 
-  <!-- About Section with Profile Image -->
-<section class="about" id="about">
-    <div class="container">
-        <h2 class="section-title">About Me</h2>
-        <div class="about-content">
-            <div class="about-text">
-                <p>
-                    I'm an Electronics & Communication Engineering student specializing in VLSI Design & Technology at Manipal Institute of Technology. My passion lies in creating innovative hardware solutions and exploring the fascinating world of semiconductor technology.
-                </p>
-                <p>
-                    Currently, I'm contributing to Project MANAS as part of the SNA (Sensor and Actuation) subsystem team, where I work on hardware development and sensor integration for autonomous vehicle systems.
-                </p>
-                <div class="about-interests">
-                    <h3>Areas of Interest</h3>
-                    <ul>
-                        <li>VLSI Design & Semiconductor Technology</li>
-                        <li>AI & Hardware Acceleration</li>
-                        <li>Research & Innovation</li>
-                        <li>Practical Engineering</li>
-                    </ul>
+    <!-- About Section -->
+    <section class="about" id="about">
+        <div class="container">
+            <h2 class="section-title">About Me</h2>
+            <div class="about-content">
+                <div class="about-text">
+                    <p>
+                        I'm an Electronics & Communication Engineering student specializing in VLSI Design & Technology at Manipal Institute of Technology. My passion lies in creating innovative hardware solutions and exploring the fascinating world of semiconductor technology.
+                    </p>
+                    <p>
+                        Currently, I'm contributing to Project MANAS as part of the SNA (Sensor and Actuation) subsystem team, where I work on hardware development and sensor integration for autonomous vehicle systems.
+                    </p>
+                    <div class="about-interests">
+                        <h3>My Interests</h3>
+                        <ul>
+                            <li>VLSI Design & Semiconductor Technology</li>
+                            <li>RTL-to-GDS flows, ASICs, and neuromorphic architectures</li>
+                            <li>AI & Hardware Acceleration</li>
+                            <li>Systolic arrays, TPUs, and custom processor design</li>
+                            <li>Research & Innovation - Patent-worthy projects</li>
+                            <li>Hardware-software co-design</li>
+                        </ul>
+                    </div>
                 </div>
-            </div>
-            <div class="about-image">
-                <div class="profile-photo">
-                    <!-- Multiple fallback methods for reliable image loading -->
-                    <img id="profile-image" 
-                         src="https://raw.githubusercontent.com/KPkaustubhKP/KPkaustubhKP.github.io/main/profile-photo.jpg" 
-                         alt="Kaustubh Pandey - VLSI Designer" 
-                         class="profile-img"
-                         onerror="this.onerror=null; this.src='./profile-photo.jpg'; if(this.complete && this.naturalHeight===0) { this.style.display='none'; document.getElementById('profile-fallback').style.display='flex'; }"
-                         onload="console.log('Profile image loaded successfully'); this.style.display='block';">
-                    
-                    <!-- Fallback placeholder (shows if image fails) -->
-                    <div class="profile-placeholder" id="profile-fallback" style="display: none;">
-                        <span>👤</span>
-                        <p>Kaustubh Pandey</p>
-                        <small>VLSI Designer</small>
+                <div class="about-image">
+                    <div class="image-placeholder">
+                        <span>📷</span>
+                        <p>Profile Image</p>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
-</section>
-
-<script>
-// Enhanced image fallback handling
-document.addEventListener('DOMContentLoaded', function() {
-    const profileImage = document.getElementById('profile-image');
-    const profileFallback = document.getElementById('profile-fallback');
-    
-    // Handle image load errors
-    profileImage.addEventListener('error', function() {
-        console.log('Profile image failed to load, showing fallback');
-        this.style.display = 'none';
-        profileFallback.style.display = 'flex';
-    });
-    
-    // Check if image loaded successfully
-    profileImage.addEventListener('load', function() {
-        console.log('Profile image loaded successfully');
-        this.style.display = 'block';
-        profileFallback.style.display = 'none';
-    });
-    
-    // Handle case where image is already cached but failed
-    if (profileImage.complete && profileImage.naturalHeight === 0) {
-        profileImage.style.display = 'none';
-        profileFallback.style.display = 'flex';
-    }
-});
-</script>
+    </section>
 
     <!-- Projects Section -->
     <section class="projects" id="projects">
         <div class="container">
             <h2 class="section-title">Featured Projects</h2>
             <div class="projects-grid">
-                <!-- Hardware Project (Thejas32) -->
-                <div class="project-card featured" data-category="hardware">
+                <!-- VLSI Project -->
+                <div class="project-card featured" data-category="vlsi">
                     <div class="project-header">
                         <h3>VLSI System Design - Thejas32 Evaluation Board</h3>
                         <span class="project-status completed">Completed</span>
@@ -158,7 +114,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     </div>
                 </div>
 
-                <!-- Hardware Project (MANAS) -->
+                <!-- Hardware Project -->
                 <div class="project-card featured" data-category="hardware">
                     <div class="project-header">
                         <h3>Project MANAS - Autonomous UGV Hardware</h3>
@@ -178,13 +134,13 @@ document.addEventListener('DOMContentLoaded', function() {
                     </div>
                 </div>
 
-                <!-- VLSI Project (PID Controller) -->
-                <div class="project-card" data-category="vlsi">
+                <!-- FPGA Project -->
+                <div class="project-card" data-category="fpga">
                     <div class="project-header">
                         <h3>Digital PID Motor Controller</h3>
                         <span class="project-status completed">Completed</span>
                     </div>
-                    <div class="project-role">VLSI Developer</div>
+                    <div class="project-role">FPGA Developer</div>
                     <p class="project-description">
                         Designed and implemented a digital PID controller in Verilog to regulate DC motor speed via encoder feedback. Synthesized the design with Vivado for FPGA deployment and validated functionality through comprehensive simulation.
                     </p>
@@ -207,8 +163,8 @@ document.addEventListener('DOMContentLoaded', function() {
                 <button class="filter-btn" data-filter="fpga">FPGA</button>
             </div>
             <div class="all-projects-grid">
-                <!-- Hardware Project (Thejas32) -->
-                <div class="project-card" data-category="hardware">
+                <!-- Same projects repeated for filtering -->
+                <div class="project-card" data-category="vlsi">
                     <div class="project-header">
                         <h3>VLSI System Design - Thejas32 Evaluation Board</h3>
                         <span class="project-status completed">Completed</span>
@@ -240,12 +196,12 @@ document.addEventListener('DOMContentLoaded', function() {
                     </div>
                 </div>
 
-                <div class="project-card" data-category="vlsi">
+                <div class="project-card" data-category="fpga">
                     <div class="project-header">
                         <h3>Digital PID Motor Controller</h3>
                         <span class="project-status completed">Completed</span>
                     </div>
-                    <div class="project-role">VLSI Developer</div>
+                    <div class="project-role">FPGA Developer</div>
                     <p class="project-description">
                         Verilog-based PID controller for DC motor speed regulation with encoder feedback.
                     </p>
@@ -301,137 +257,6 @@ document.addEventListener('DOMContentLoaded', function() {
         </div>
     </section>
 
-    <!-- Blogs Section -->
-    <section class="blogs" id="blogs">
-        <div class="container">
-            <h2 class="section-title">Technical Blogs</h2>
-            <p class="blogs-intro">Sharing insights on VLSI design, hardware development, and emerging technologies in semiconductor engineering.</p>
-            
-            <div class="blogs-grid">
-                <div class="blog-card">
-                    <div class="blog-image">
-                        <div class="blog-placeholder">
-                            <span>📝</span>
-                        </div>
-                    </div>
-                    <div class="blog-content">
-                        <div class="blog-category">VLSI Design</div>
-                        <h3>Understanding RTL-to-GDSII Flow: A Complete Guide</h3>
-                        <p class="blog-excerpt">
-                            Exploring the complete semiconductor design flow from Register Transfer Level to GDSII layout, covering synthesis, place & route, and physical verification steps.
-                        </p>
-                        <div class="blog-meta">
-                            <span class="blog-date">Coming Soon</span>
-                            <span class="blog-read-time">8 min read</span>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="blog-card">
-                    <div class="blog-image">
-                        <div class="blog-placeholder">
-                            <span>⚡</span>
-                        </div>
-                    </div>
-                    <div class="blog-content">
-                        <div class="blog-category">Hardware Design</div>
-                        <h3>High-Speed PCB Design: Signal Integrity Fundamentals</h3>
-                        <p class="blog-excerpt">
-                            Deep dive into signal integrity challenges in high-speed PCB design, covering transmission lines, crosstalk, and design guidelines for optimal performance.
-                        </p>
-                        <div class="blog-meta">
-                            <span class="blog-date">Coming Soon</span>
-                            <span class="blog-read-time">12 min read</span>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="blog-card">
-                    <div class="blog-image">
-                        <div class="blog-placeholder">
-                            <span>🔬</span>
-                        </div>
-                    </div>
-                    <div class="blog-content">
-                        <div class="blog-category">Research</div>
-                        <h3>AI Hardware Acceleration: From CPUs to Custom ASICs</h3>
-                        <p class="blog-excerpt">
-                            Analyzing the evolution of AI compute hardware, from traditional processors to specialized AI accelerators, TPUs, and neuromorphic architectures.
-                        </p>
-                        <div class="blog-meta">
-                            <span class="blog-date">Coming Soon</span>
-                            <span class="blog-read-time">15 min read</span>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="blog-card">
-                    <div class="blog-image">
-                        <div class="blog-placeholder">
-                            <span>🛠️</span>
-                        </div>
-                    </div>
-                    <div class="blog-content">
-                        <div class="blog-category">Tutorial</div>
-                        <h3>FPGA Development with Vivado: Best Practices</h3>
-                        <p class="blog-excerpt">
-                            Comprehensive guide to FPGA development using Xilinx Vivado, covering project setup, synthesis optimization, and debugging techniques.
-                        </p>
-                        <div class="blog-meta">
-                            <span class="blog-date">Coming Soon</span>
-                            <span class="blog-read-time">10 min read</span>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="blog-card">
-                    <div class="blog-image">
-                        <div class="blog-placeholder">
-                            <span>📊</span>
-                        </div>
-                    </div>
-                    <div class="blog-content">
-                        <div class="blog-category">Project Log</div>
-                        <h3>Building an Autonomous UGV: Hardware Insights</h3>
-                        <p class="blog-excerpt">
-                            Behind-the-scenes look at Project MANAS hardware development, covering power distribution, sensor integration, and CAN bus implementation.
-                        </p>
-                        <div class="blog-meta">
-                            <span class="blog-date">Coming Soon</span>
-                            <span class="blog-read-time">14 min read</span>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="blog-card">
-                    <div class="blog-image">
-                        <div class="blog-placeholder">
-                            <span>🔧</span>
-                        </div>
-                    </div>
-                    <div class="blog-content">
-                        <div class="blog-category">Industry Insights</div>
-                        <h3>The Future of Semiconductor Manufacturing</h3>
-                        <p class="blog-excerpt">
-                            Exploring emerging trends in semiconductor technology, from EUV lithography to quantum computing implications for chip design.
-                        </p>
-                        <div class="blog-meta">
-                            <span class="blog-date">Coming Soon</span>
-                            <span class="blog-read-time">11 min read</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="blogs-cta">
-                <p>More technical articles coming soon! Follow me on LinkedIn for updates.</p>
-                <a href="https://www.linkedin.com/in/kaustubh-pandey-b42082218/" target="_blank" class="btn btn--outline">
-                    Follow on LinkedIn
-                </a>
-            </div>
-        </div>
-    </section>
-
     <!-- Resume Section -->
     <section class="resume" id="resume">
         <div class="container">
@@ -456,11 +281,7 @@ document.addEventListener('DOMContentLoaded', function() {
                                 <span class="stat-label">Internships</span>
                             </div>
                         </div>
-                        <!-- Google Drive Direct Download -->
-                        <a href="https://drive.google.com/uc?export=download&id=1ABBRMAlDGMKgTIRbXp9XmNFMHZoEv2N5" 
-                           download="Kaustubh_Pandey_Resume.pdf" 
-                           class="btn btn--primary btn--lg"
-                           target="_blank">
+                        <a href="KP_Resume.pdf" download="Kaustubh_Pandey_Resume.pdf" class="btn btn--primary btn--lg">
                             📥 Download Resume
                         </a>
                     </div>
