@@ -10,16 +10,16 @@ document.addEventListener('DOMContentLoaded', function() {
     initProjectFiltering();
     initContactForm();
     initTypewriter();
-    // Removed initResumeDownload() - using direct HTML link instead
+    initBlogCards();
 });
 
-// Theme Toggle Functionality
+// Theme Toggle Functionality - Dark Mode Default
 function initThemeToggle() {
     const themeToggle = document.getElementById('theme-toggle');
     const themeIcon = themeToggle.querySelector('.theme-toggle-icon');
 
-    // Default to light mode
-    let currentTheme = 'light';
+    // Default to dark mode
+    let currentTheme = 'dark';
     document.documentElement.setAttribute('data-color-scheme', currentTheme);
     updateThemeIcon(currentTheme);
 
@@ -452,6 +452,122 @@ function initTypewriter() {
     setTimeout(typeWriter, 500);
 }
 
+// Blog Cards Interactions
+function initBlogCards() {
+    const blogCards = document.querySelectorAll('.blog-card');
+
+    blogCards.forEach(card => {
+        // Add hover effect and click interaction
+        card.addEventListener('click', function(e) {
+            e.preventDefault();
+            
+            // For now, show a "coming soon" message
+            const category = this.querySelector('.blog-category').textContent;
+            const title = this.querySelector('h3').textContent;
+            
+            // Create a modal-like notification
+            showBlogComingSoon(title, category);
+        });
+
+        // Add ripple effect on click
+        card.addEventListener('click', function(e) {
+            const ripple = document.createElement('div');
+            const rect = card.getBoundingClientRect();
+            const size = Math.max(rect.width, rect.height);
+            const x = e.clientX - rect.left - size / 2;
+            const y = e.clientY - rect.top - size / 2;
+
+            ripple.style.cssText = `
+                position: absolute;
+                width: ${size}px;
+                height: ${size}px;
+                left: ${x}px;
+                top: ${y}px;
+                background: rgba(96, 165, 250, 0.1);
+                border-radius: 50%;
+                transform: scale(0);
+                animation: ripple 0.6s ease-out;
+                pointer-events: none;
+                z-index: 1;
+            `;
+
+            card.style.position = 'relative';
+            card.style.overflow = 'hidden';
+            card.appendChild(ripple);
+
+            setTimeout(() => {
+                if (ripple && ripple.parentNode) {
+                    ripple.remove();
+                }
+            }, 600);
+        });
+    });
+
+    function showBlogComingSoon(title, category) {
+        // Create notification
+        const notification = document.createElement('div');
+        notification.style.cssText = `
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: var(--color-surface);
+            border: 1px solid var(--color-border);
+            border-radius: var(--radius-lg);
+            padding: var(--space-24);
+            box-shadow: var(--shadow-lg);
+            z-index: 10000;
+            max-width: 400px;
+            text-align: center;
+        `;
+        
+        notification.innerHTML = `
+            <h3 style="color: var(--color-text); margin-bottom: var(--space-16);">
+                ${title}
+            </h3>
+            <div style="background: var(--color-bg-1); color: var(--portfolio-primary); padding: var(--space-4) var(--space-12); border-radius: var(--radius-full); font-size: var(--font-size-xs); margin-bottom: var(--space-16); display: inline-block;">
+                ${category}
+            </div>
+            <p style="color: var(--color-text-secondary); margin-bottom: var(--space-20);">
+                This blog post is currently in development. Stay tuned for technical insights on VLSI design and hardware engineering!
+            </p>
+            <button onclick="this.parentElement.remove()" style="background: var(--portfolio-primary); color: var(--color-btn-primary-text); border: none; padding: var(--space-8) var(--space-16); border-radius: var(--radius-base); cursor: pointer;">
+                Got it!
+            </button>
+        `;
+
+        // Create overlay
+        const overlay = document.createElement('div');
+        overlay.style.cssText = `
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 9999;
+        `;
+
+        // Add to DOM
+        document.body.appendChild(overlay);
+        document.body.appendChild(notification);
+
+        // Remove on overlay click
+        overlay.addEventListener('click', () => {
+            document.body.removeChild(overlay);
+            document.body.removeChild(notification);
+        });
+
+        // Auto remove after 5 seconds
+        setTimeout(() => {
+            if (document.body.contains(notification)) {
+                document.body.removeChild(overlay);
+                document.body.removeChild(notification);
+            }
+        }, 5000);
+    }
+}
+
 // Project Card Interactions
 document.addEventListener('DOMContentLoaded', function() {
     const projectCards = document.querySelectorAll('.project-card');
@@ -476,7 +592,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 height: ${size}px;
                 left: ${x}px;
                 top: ${y}px;
-                background: rgba(37, 99, 235, 0.1);
+                background: rgba(96, 165, 250, 0.1);
                 border-radius: 50%;
                 transform: scale(0);
                 animation: ripple 0.6s ease-out;
@@ -582,12 +698,12 @@ style.textContent = `
     }
 
     .navbar.scrolled {
-        background: rgba(248, 250, 252, 0.98);
+        background: rgba(38, 40, 40, 0.98);
         box-shadow: var(--shadow-sm);
     }
 
-    [data-color-scheme="dark"] .navbar.scrolled {
-        background: rgba(30, 41, 59, 0.98);
+    [data-color-scheme="light"] .navbar.scrolled {
+        background: rgba(248, 250, 252, 0.98);
     }
 `;
 document.head.appendChild(style);
@@ -664,4 +780,4 @@ document.addEventListener('DOMContentLoaded', function() {
     document.body.insertBefore(skipLink, document.body.firstChild);
 });
 
-console.log('🚀 Portfolio loaded successfully!');
+console.log('🚀 Portfolio loaded successfully with VLSI circuit background!');
