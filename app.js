@@ -1,4 +1,4 @@
-// Portfolio JavaScript Functionality
+// Enhanced Portfolio JavaScript with Interactive Features
 
 document.addEventListener('DOMContentLoaded', function() {
     // Initialize all functionality
@@ -7,10 +7,11 @@ document.addEventListener('DOMContentLoaded', function() {
     initSmoothScrolling();
     initScrollAnimations();
     initActiveNavigation();
-    initProjectFiltering();
+    initWorkFiltering();
     initContactForm();
     initTypewriter();
-    initBlogCards();
+    initInteractiveTimeline();
+    initWorkCards();
 });
 
 // Theme Toggle Functionality - Dark Mode Default
@@ -173,10 +174,93 @@ function initActiveNavigation() {
     });
 }
 
-// Project Filtering
-function initProjectFiltering() {
-    const filterButtons = document.querySelectorAll('.filter-btn');
-    const projectCards = document.querySelectorAll('.all-projects-grid .project-card');
+// Interactive Timeline
+function initInteractiveTimeline() {
+    const timelineItems = document.querySelectorAll('.timeline-item');
+
+    timelineItems.forEach(item => {
+        // Add click interaction
+        item.addEventListener('click', function(e) {
+            e.preventDefault();
+            
+            // Remove active state from all items
+            timelineItems.forEach(otherItem => {
+                otherItem.classList.remove('active');  
+            });
+            
+            // Add active state to clicked item
+            this.classList.add('active');
+            
+            // Add ripple effect
+            const ripple = document.createElement('div');
+            const rect = this.getBoundingClientRect();
+            const size = Math.max(rect.width, rect.height);
+            const x = e.clientX - rect.left - size / 2;
+            const y = e.clientY - rect.top - size / 2;
+
+            ripple.style.cssText = `
+                position: absolute;
+                width: ${size}px;
+                height: ${size}px;
+                left: ${x}px;
+                top: ${y}px;
+                background: rgba(96, 165, 250, 0.2);
+                border-radius: 50%;
+                transform: scale(0);
+                animation: ripple 0.8s ease-out;
+                pointer-events: none;
+                z-index: 1;
+            `;
+
+            this.style.position = 'relative';
+            this.style.overflow = 'hidden';
+            this.appendChild(ripple);
+
+            setTimeout(() => {
+                if (ripple && ripple.parentNode) {
+                    ripple.remove();
+                }
+            }, 800);
+        });
+
+        // Add hover effects
+        item.addEventListener('mouseenter', function() {
+            const marker = this.querySelector('.timeline-marker');
+            marker.style.transform = 'scale(1.1)';
+            marker.style.transition = 'transform 0.3s ease-out';
+        });
+
+        item.addEventListener('mouseleave', function() {
+            const marker = this.querySelector('.timeline-marker');
+            marker.style.transform = 'scale(1)';
+        });
+    });
+
+    // Animate timeline items on scroll
+    const timelineObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.style.opacity = '0';
+                entry.target.style.transform = 'translateX(-50px)';
+                entry.target.style.transition = 'all 0.8s ease-out';
+
+                setTimeout(() => {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateX(0)';
+                }, 200);
+            }
+        });
+    }, { threshold: 0.3 });
+
+    timelineItems.forEach(item => {
+        timelineObserver.observe(item);
+    });
+}
+
+// Work & Insights Filtering
+function initWorkFiltering() {
+    const filterButtons = document.querySelectorAll('.work-filter-btn');
+    const workCards = document.querySelectorAll('.work-card');
 
     filterButtons.forEach(button => {
         button.addEventListener('click', function(e) {
@@ -189,8 +273,8 @@ function initProjectFiltering() {
             filterButtons.forEach(btn => btn.classList.remove('active'));
             this.classList.add('active');
 
-            // Filter projects with animation
-            projectCards.forEach(card => {
+            // Filter work cards with animation
+            workCards.forEach(card => {
                 const category = card.getAttribute('data-category');
 
                 if (filter === 'all' || category === filter) {
@@ -215,6 +299,171 @@ function initProjectFiltering() {
             });
         });
     });
+}
+
+// Work Cards Interactions
+function initWorkCards() {
+    const workCards = document.querySelectorAll('.work-card');
+
+    workCards.forEach(card => {
+        // Add hover effect and click interaction
+        card.addEventListener('click', function(e) {
+            e.preventDefault();
+            
+            const isProject = card.classList.contains('project-card');
+            const isBlog = card.classList.contains('blog-card');
+            
+            if (isProject) {
+                showProjectDetails(card);
+            } else if (isBlog) {
+                showBlogComingSoon(card);
+            }
+        });
+
+        // Add ripple effect on click
+        card.addEventListener('click', function(e) {
+            const ripple = document.createElement('div');
+            const rect = card.getBoundingClientRect();
+            const size = Math.max(rect.width, rect.height);
+            const x = e.clientX - rect.left - size / 2;
+            const y = e.clientY - rect.top - size / 2;
+
+            ripple.style.cssText = `
+                position: absolute;
+                width: ${size}px;
+                height: ${size}px;
+                left: ${x}px;
+                top: ${y}px;
+                background: rgba(96, 165, 250, 0.1);
+                border-radius: 50%;
+                transform: scale(0);
+                animation: ripple 0.6s ease-out;
+                pointer-events: none;
+                z-index: 1;
+            `;
+
+            card.style.position = 'relative';
+            card.style.overflow = 'hidden';
+            card.appendChild(ripple);
+
+            setTimeout(() => {
+                if (ripple && ripple.parentNode) {
+                    ripple.remove();
+                }
+            }, 600);
+        });
+
+        // Hover effect for tech tags
+        const techTags = card.querySelectorAll('.tech-tag');
+        techTags.forEach(tag => {
+            tag.addEventListener('mouseenter', function() {
+                this.style.transform = 'translateY(-2px) scale(1.05)';
+                this.style.transition = 'all 0.2s ease-out';
+            });
+
+            tag.addEventListener('mouseleave', function() {
+                this.style.transform = 'translateY(0) scale(1)';
+            });
+        });
+    });
+
+    function showProjectDetails(card) {
+        const title = card.querySelector('h3').textContent;
+        const role = card.querySelector('.work-role')?.textContent || '';
+        const description = card.querySelector('.work-description').textContent;
+        const status = card.querySelector('.work-status').textContent;
+        const category = card.querySelector('.work-category').textContent;
+        
+        // Create detailed project modal
+        const modal = createModal();
+        modal.innerHTML = `
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2>${title}</h2>
+                    <button class="modal-close" onclick="this.closest('.modal-overlay').remove()">✕</button>
+                </div>
+                <div class="modal-body">
+                    <div class="project-category ${category.toLowerCase().replace(' ', '-')}">${category}</div>
+                    ${role ? `<div class="project-role">${role}</div>` : ''}
+                    <div class="project-status-badge ${status.toLowerCase().replace(' ', '-')}">${status}</div>
+                    <p class="project-detailed-description">${description}</p>
+                    <div class="project-tech-stack">
+                        ${Array.from(card.querySelectorAll('.tech-tag')).map(tag => 
+                            `<span class="tech-tag-detailed">${tag.textContent}</span>`
+                        ).join('')}
+                    </div>
+                    <div class="project-actions">
+                        <p style="color: var(--color-text-secondary); font-style: italic;">
+                            Detailed project documentation and live demos coming soon!
+                        </p>
+                    </div>
+                </div>
+            </div>
+        `;
+        
+        document.body.appendChild(modal);
+    }
+
+    function showBlogComingSoon(card) {
+        const title = card.querySelector('h3').textContent;
+        const category = card.querySelector('.work-category').textContent;
+        const readTime = card.querySelector('.work-read-time')?.textContent || '';
+        
+        // Create blog coming soon modal
+        const modal = createModal();
+        modal.innerHTML = `
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2>${title}</h2>
+                    <button class="modal-close" onclick="this.closest('.modal-overlay').remove()">✕</button>
+                </div>
+                <div class="modal-body">
+                    <div class="blog-category-badge ${category.toLowerCase().replace(' ', '-')}">${category}</div>
+                    ${readTime ? `<div class="blog-read-time">📖 ${readTime}</div>` : ''}
+                    <div class="coming-soon-content">
+                        <div class="coming-soon-icon">📝</div>
+                        <h3>Coming Soon!</h3>
+                        <p>This technical article is currently in development. I'm working on creating comprehensive content about VLSI design, hardware engineering, and emerging technologies.</p>
+                        <div class="newsletter-signup">
+                            <p>Want to be notified when it's published?</p>
+                            <a href="https://www.linkedin.com/in/kaustubh-pandey-b42082218/" target="_blank" class="btn btn--primary">
+                                Follow on LinkedIn
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        `;
+        
+        document.body.appendChild(modal);
+    }
+
+    function createModal() {
+        const modal = document.createElement('div');
+        modal.className = 'modal-overlay';
+        modal.style.cssText = `
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 10000;
+            animation: fadeIn 0.3s ease-out;
+        `;
+
+        // Close on overlay click
+        modal.addEventListener('click', function(e) {
+            if (e.target === modal) {
+                modal.remove();
+            }
+        });
+
+        return modal;
+    }
 }
 
 // Enhanced Contact Form for Email Integration
@@ -429,7 +678,7 @@ function initTypewriter() {
 
     // Clear the text and start typing effect
     typewriterElement.textContent = '';
-    typewriterElement.style.borderRight = '2px solid var(--portfolio-primary)';
+    typewriterElement.style.borderRight = '2px solid var(--color-neon-blue)';
 
     let i = 0;
     const typingSpeed = 100;
@@ -451,180 +700,6 @@ function initTypewriter() {
     // Start typing after a brief delay
     setTimeout(typeWriter, 500);
 }
-
-// Blog Cards Interactions
-function initBlogCards() {
-    const blogCards = document.querySelectorAll('.blog-card');
-
-    blogCards.forEach(card => {
-        // Add hover effect and click interaction
-        card.addEventListener('click', function(e) {
-            e.preventDefault();
-            
-            // For now, show a "coming soon" message
-            const category = this.querySelector('.blog-category').textContent;
-            const title = this.querySelector('h3').textContent;
-            
-            // Create a modal-like notification
-            showBlogComingSoon(title, category);
-        });
-
-        // Add ripple effect on click
-        card.addEventListener('click', function(e) {
-            const ripple = document.createElement('div');
-            const rect = card.getBoundingClientRect();
-            const size = Math.max(rect.width, rect.height);
-            const x = e.clientX - rect.left - size / 2;
-            const y = e.clientY - rect.top - size / 2;
-
-            ripple.style.cssText = `
-                position: absolute;
-                width: ${size}px;
-                height: ${size}px;
-                left: ${x}px;
-                top: ${y}px;
-                background: rgba(96, 165, 250, 0.1);
-                border-radius: 50%;
-                transform: scale(0);
-                animation: ripple 0.6s ease-out;
-                pointer-events: none;
-                z-index: 1;
-            `;
-
-            card.style.position = 'relative';
-            card.style.overflow = 'hidden';
-            card.appendChild(ripple);
-
-            setTimeout(() => {
-                if (ripple && ripple.parentNode) {
-                    ripple.remove();
-                }
-            }, 600);
-        });
-    });
-
-    function showBlogComingSoon(title, category) {
-        // Create notification
-        const notification = document.createElement('div');
-        notification.style.cssText = `
-            position: fixed;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            background: var(--color-surface);
-            border: 1px solid var(--color-border);
-            border-radius: var(--radius-lg);
-            padding: var(--space-24);
-            box-shadow: var(--shadow-lg);
-            z-index: 10000;
-            max-width: 400px;
-            text-align: center;
-        `;
-        
-        notification.innerHTML = `
-            <h3 style="color: var(--color-text); margin-bottom: var(--space-16);">
-                ${title}
-            </h3>
-            <div style="background: var(--color-bg-1); color: var(--portfolio-primary); padding: var(--space-4) var(--space-12); border-radius: var(--radius-full); font-size: var(--font-size-xs); margin-bottom: var(--space-16); display: inline-block;">
-                ${category}
-            </div>
-            <p style="color: var(--color-text-secondary); margin-bottom: var(--space-20);">
-                This blog post is currently in development. Stay tuned for technical insights on VLSI design and hardware engineering!
-            </p>
-            <button onclick="this.parentElement.remove()" style="background: var(--portfolio-primary); color: var(--color-btn-primary-text); border: none; padding: var(--space-8) var(--space-16); border-radius: var(--radius-base); cursor: pointer;">
-                Got it!
-            </button>
-        `;
-
-        // Create overlay
-        const overlay = document.createElement('div');
-        overlay.style.cssText = `
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.5);
-            z-index: 9999;
-        `;
-
-        // Add to DOM
-        document.body.appendChild(overlay);
-        document.body.appendChild(notification);
-
-        // Remove on overlay click
-        overlay.addEventListener('click', () => {
-            document.body.removeChild(overlay);
-            document.body.removeChild(notification);
-        });
-
-        // Auto remove after 5 seconds
-        setTimeout(() => {
-            if (document.body.contains(notification)) {
-                document.body.removeChild(overlay);
-                document.body.removeChild(notification);
-            }
-        }, 5000);
-    }
-}
-
-// Project Card Interactions
-document.addEventListener('DOMContentLoaded', function() {
-    const projectCards = document.querySelectorAll('.project-card');
-
-    projectCards.forEach(card => {
-        // Add ripple effect on click
-        card.addEventListener('click', function(e) {
-            // Don't create ripple if clicking on tech tags or status
-            if (e.target.classList.contains('tech-tag') || e.target.classList.contains('project-status')) {
-                return;
-            }
-
-            const ripple = document.createElement('div');
-            const rect = card.getBoundingClientRect();
-            const size = Math.max(rect.width, rect.height);
-            const x = e.clientX - rect.left - size / 2;
-            const y = e.clientY - rect.top - size / 2;
-
-            ripple.style.cssText = `
-                position: absolute;
-                width: ${size}px;
-                height: ${size}px;
-                left: ${x}px;
-                top: ${y}px;
-                background: rgba(96, 165, 250, 0.1);
-                border-radius: 50%;
-                transform: scale(0);
-                animation: ripple 0.6s ease-out;
-                pointer-events: none;
-                z-index: 1;
-            `;
-
-            card.style.position = 'relative';
-            card.style.overflow = 'hidden';
-            card.appendChild(ripple);
-
-            setTimeout(() => {
-                if (ripple && ripple.parentNode) {
-                    ripple.remove();
-                }
-            }, 600);
-        });
-
-        // Hover effect for tech tags
-        const techTags = card.querySelectorAll('.tech-tag');
-        techTags.forEach(tag => {
-            tag.addEventListener('mouseenter', function() {
-                this.style.transform = 'translateY(-2px) scale(1.05)';
-                this.style.transition = 'all 0.2s ease-out';
-            });
-
-            tag.addEventListener('mouseleave', function() {
-                this.style.transform = 'translateY(0) scale(1)';
-            });
-        });
-    });
-});
 
 // Skill Tags Animation
 document.addEventListener('DOMContentLoaded', function() {
@@ -652,30 +727,6 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 });
 
-// Achievement Timeline Animation
-document.addEventListener('DOMContentLoaded', function() {
-    const achievementItems = document.querySelectorAll('.achievement-item');
-
-    const achievementObserver = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.style.opacity = '0';
-                entry.target.style.transform = 'translateX(-50px)';
-                entry.target.style.transition = 'all 0.6s ease-out';
-
-                setTimeout(() => {
-                    entry.target.style.opacity = '1';
-                    entry.target.style.transform = 'translateX(0)';
-                }, 200);
-            }
-        });
-    }, { threshold: 0.3 });
-
-    achievementItems.forEach(item => {
-        achievementObserver.observe(item);
-    });
-});
-
 // Add CSS animations dynamically
 const style = document.createElement('style');
 style.textContent = `
@@ -686,15 +737,171 @@ style.textContent = `
         }
     }
 
-    @keyframes slideInLeft {
+    @keyframes fadeIn {
         from {
             opacity: 0;
-            transform: translateX(-50px);
         }
         to {
             opacity: 1;
-            transform: translateX(0);
         }
+    }
+
+    .modal-content {
+        background: var(--color-surface);
+        border-radius: var(--radius-lg);
+        max-width: 600px;
+        width: 90%;
+        max-height: 80vh;
+        overflow-y: auto;
+        border: 1px solid var(--color-card-border);
+        box-shadow: var(--shadow-lg);
+    }
+
+    .modal-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: var(--space-24);
+        border-bottom: 1px solid var(--color-border);
+    }
+
+    .modal-header h2 {
+        color: var(--color-text);
+        margin: 0;
+        font-size: var(--font-size-2xl);
+    }
+
+    .modal-close {
+        background: none;
+        border: none;
+        font-size: var(--font-size-2xl);
+        color: var(--color-text-secondary);
+        cursor: pointer;
+        width: 32px;
+        height: 32px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: var(--radius-sm);
+        transition: all var(--duration-fast) var(--ease-standard);
+    }
+
+    .modal-close:hover {
+        background: var(--color-secondary);
+        color: var(--color-text);
+    }
+
+    .modal-body {
+        padding: var(--space-24);
+    }
+
+    .project-category, .blog-category-badge {
+        display: inline-block;
+        padding: var(--space-6) var(--space-12);
+        border-radius: var(--radius-full);
+        font-size: var(--font-size-sm);
+        font-weight: var(--font-weight-medium);
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+        margin-bottom: var(--space-16);
+        background: var(--color-bg-1);
+        color: var(--portfolio-primary);
+    }
+
+    .project-role {
+        color: var(--portfolio-primary);
+        font-weight: var(--font-weight-medium);
+        margin-bottom: var(--space-12);
+    }
+
+    .project-status-badge {
+        display: inline-block;
+        padding: var(--space-4) var(--space-12);
+        border-radius: var(--radius-full);
+        font-size: var(--font-size-xs);
+        font-weight: var(--font-weight-bold);
+        text-transform: uppercase;
+        margin-bottom: var(--space-16);
+    }
+
+    .project-status-badge.completed {
+        background: var(--color-bg-3);
+        color: var(--color-success);
+    }
+
+    .project-status-badge.ongoing {
+        background: var(--color-bg-1);
+        color: var(--portfolio-primary);
+    }
+
+    .project-detailed-description {
+        color: var(--color-text-secondary);
+        line-height: 1.6;
+        margin-bottom: var(--space-20);
+    }
+
+    .project-tech-stack {
+        display: flex;
+        flex-wrap: wrap;
+        gap: var(--space-8);
+        margin-bottom: var(--space-20);
+    }
+
+    .tech-tag-detailed {
+        background: var(--color-bg-1);
+        color: var(--color-text);
+        padding: var(--space-6) var(--space-12);
+        border-radius: var(--radius-full);
+        font-size: var(--font-size-sm);
+        font-weight: var(--font-weight-medium);
+    }
+
+    .coming-soon-content {
+        text-align: center;
+    }
+
+    .coming-soon-icon {
+        font-size: 4rem;
+        margin-bottom: var(--space-16);
+    }
+
+    .coming-soon-content h3 {
+        color: var(--color-text);
+        margin-bottom: var(--space-16);
+    }
+
+    .coming-soon-content p {
+        color: var(--color-text-secondary);
+        line-height: 1.6;
+        margin-bottom: var(--space-24);
+    }
+
+    .newsletter-signup {
+        background: var(--color-bg-1);
+        padding: var(--space-20);
+        border-radius: var(--radius-lg);
+        border: 1px solid var(--color-border);
+    }
+
+    .newsletter-signup p {
+        margin-bottom: var(--space-16);
+        color: var(--color-text);
+        font-weight: var(--font-weight-medium);
+    }
+
+    .blog-read-time {
+        color: var(--color-text-secondary);
+        margin-bottom: var(--space-16);
+        font-size: var(--font-size-sm);
+    }
+
+    .timeline-item.active {
+        transform: translateX(15px);
+    }
+
+    .timeline-item.active .timeline-card {
+        border-left-color: var(--color-neon-blue);
+        box-shadow: var(--shadow-lg);
     }
 
     .navbar.scrolled {
@@ -780,4 +987,4 @@ document.addEventListener('DOMContentLoaded', function() {
     document.body.insertBefore(skipLink, document.body.firstChild);
 });
 
-console.log('🚀 Portfolio loaded successfully with VLSI circuit background!');
+console.log('🚀 Enhanced Portfolio loaded with vibrant VLSI animations and interactive features!');
