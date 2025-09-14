@@ -20,11 +20,12 @@
                 <li><a href="#about" class="nav-link">About</a></li>
                 <li><a href="#projects" class="nav-link">Projects</a></li>
                 <li><a href="#skills" class="nav-link">Skills</a></li>
+                <li><a href="#blogs" class="nav-link">Blogs</a></li>
                 <li><a href="#resume" class="nav-link">Resume</a></li>
                 <li><a href="#contact" class="nav-link">Contact</a></li>
                 <li>
                     <button class="theme-toggle" id="theme-toggle" aria-label="Toggle theme">
-                        <span class="theme-toggle-icon">🌙</span>
+                        <span class="theme-toggle-icon">☀️</span>
                     </button>
                 </li>
             </ul>
@@ -36,9 +37,14 @@
         </div>
     </nav>
 
-    <!-- Hero Section -->
+    <!-- Hero Section with VLSI Circuit Background -->
     <section class="hero" id="home">
-        <div class="hero-background-animation"></div>
+        <div class="hero-circuit-background">
+            <div class="circuit-pattern"></div>
+            <div class="circuit-nodes"></div>
+            <div class="circuit-traces"></div>
+        </div>
+        <div class="hero-overlay"></div>
         <div class="container">
             <div class="hero-content">
                 <div class="hero-title">
@@ -69,14 +75,12 @@
                         Currently, I'm contributing to Project MANAS as part of the SNA (Sensor and Actuation) subsystem team, where I work on hardware development and sensor integration for autonomous vehicle systems.
                     </p>
                     <div class="about-interests">
-                        <h3>My Interests</h3>
+                        <h3>Areas of Interest</h3>
                         <ul>
                             <li>VLSI Design & Semiconductor Technology</li>
-                            <li>RTL-to-GDS flows, ASICs, and neuromorphic architectures</li>
                             <li>AI & Hardware Acceleration</li>
-                            <li>Systolic arrays, TPUs, and custom processor design</li>
-                            <li>Research & Innovation - Patent-worthy projects</li>
-                            <li>Hardware-software co-design</li>
+                            <li>Research & Innovation</li>
+                            <li>Practical Engineering</li>
                         </ul>
                     </div>
                 </div>
@@ -95,8 +99,8 @@
         <div class="container">
             <h2 class="section-title">Featured Projects</h2>
             <div class="projects-grid">
-                <!-- VLSI Project -->
-                <div class="project-card featured" data-category="vlsi">
+                <!-- Hardware Project (Thejas32) -->
+                <div class="project-card featured" data-category="hardware">
                     <div class="project-header">
                         <h3>VLSI System Design - Thejas32 Evaluation Board</h3>
                         <span class="project-status completed">Completed</span>
@@ -114,7 +118,7 @@
                     </div>
                 </div>
 
-                <!-- Hardware Project -->
+                <!-- Hardware Project (MANAS) -->
                 <div class="project-card featured" data-category="hardware">
                     <div class="project-header">
                         <h3>Project MANAS - Autonomous UGV Hardware</h3>
@@ -134,13 +138,13 @@
                     </div>
                 </div>
 
-                <!-- FPGA Project -->
-                <div class="project-card" data-category="fpga">
+                <!-- VLSI Project (PID Controller) -->
+                <div class="project-card" data-category="vlsi">
                     <div class="project-header">
                         <h3>Digital PID Motor Controller</h3>
                         <span class="project-status completed">Completed</span>
                     </div>
-                    <div class="project-role">FPGA Developer</div>
+                    <div class="project-role">VLSI Developer</div>
                     <p class="project-description">
                         Designed and implemented a digital PID controller in Verilog to regulate DC motor speed via encoder feedback. Synthesized the design with Vivado for FPGA deployment and validated functionality through comprehensive simulation.
                     </p>
@@ -163,8 +167,8 @@
                 <button class="filter-btn" data-filter="fpga">FPGA</button>
             </div>
             <div class="all-projects-grid">
-                <!-- Same projects repeated for filtering -->
-                <div class="project-card" data-category="vlsi">
+                <!-- Hardware Project (Thejas32) -->
+                <div class="project-card" data-category="hardware">
                     <div class="project-header">
                         <h3>VLSI System Design - Thejas32 Evaluation Board</h3>
                         <span class="project-status completed">Completed</span>
@@ -196,12 +200,12 @@
                     </div>
                 </div>
 
-                <div class="project-card" data-category="fpga">
+                <div class="project-card" data-category="vlsi">
                     <div class="project-header">
                         <h3>Digital PID Motor Controller</h3>
                         <span class="project-status completed">Completed</span>
                     </div>
-                    <div class="project-role">FPGA Developer</div>
+                    <div class="project-role">VLSI Developer</div>
                     <p class="project-description">
                         Verilog-based PID controller for DC motor speed regulation with encoder feedback.
                     </p>
@@ -257,6 +261,137 @@
         </div>
     </section>
 
+    <!-- Blogs Section -->
+    <section class="blogs" id="blogs">
+        <div class="container">
+            <h2 class="section-title">Technical Blogs</h2>
+            <p class="blogs-intro">Sharing insights on VLSI design, hardware development, and emerging technologies in semiconductor engineering.</p>
+            
+            <div class="blogs-grid">
+                <div class="blog-card">
+                    <div class="blog-image">
+                        <div class="blog-placeholder">
+                            <span>📝</span>
+                        </div>
+                    </div>
+                    <div class="blog-content">
+                        <div class="blog-category">VLSI Design</div>
+                        <h3>Understanding RTL-to-GDSII Flow: A Complete Guide</h3>
+                        <p class="blog-excerpt">
+                            Exploring the complete semiconductor design flow from Register Transfer Level to GDSII layout, covering synthesis, place & route, and physical verification steps.
+                        </p>
+                        <div class="blog-meta">
+                            <span class="blog-date">Coming Soon</span>
+                            <span class="blog-read-time">8 min read</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="blog-card">
+                    <div class="blog-image">
+                        <div class="blog-placeholder">
+                            <span>⚡</span>
+                        </div>
+                    </div>
+                    <div class="blog-content">
+                        <div class="blog-category">Hardware Design</div>
+                        <h3>High-Speed PCB Design: Signal Integrity Fundamentals</h3>
+                        <p class="blog-excerpt">
+                            Deep dive into signal integrity challenges in high-speed PCB design, covering transmission lines, crosstalk, and design guidelines for optimal performance.
+                        </p>
+                        <div class="blog-meta">
+                            <span class="blog-date">Coming Soon</span>
+                            <span class="blog-read-time">12 min read</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="blog-card">
+                    <div class="blog-image">
+                        <div class="blog-placeholder">
+                            <span>🔬</span>
+                        </div>
+                    </div>
+                    <div class="blog-content">
+                        <div class="blog-category">Research</div>
+                        <h3>AI Hardware Acceleration: From CPUs to Custom ASICs</h3>
+                        <p class="blog-excerpt">
+                            Analyzing the evolution of AI compute hardware, from traditional processors to specialized AI accelerators, TPUs, and neuromorphic architectures.
+                        </p>
+                        <div class="blog-meta">
+                            <span class="blog-date">Coming Soon</span>
+                            <span class="blog-read-time">15 min read</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="blog-card">
+                    <div class="blog-image">
+                        <div class="blog-placeholder">
+                            <span>🛠️</span>
+                        </div>
+                    </div>
+                    <div class="blog-content">
+                        <div class="blog-category">Tutorial</div>
+                        <h3>FPGA Development with Vivado: Best Practices</h3>
+                        <p class="blog-excerpt">
+                            Comprehensive guide to FPGA development using Xilinx Vivado, covering project setup, synthesis optimization, and debugging techniques.
+                        </p>
+                        <div class="blog-meta">
+                            <span class="blog-date">Coming Soon</span>
+                            <span class="blog-read-time">10 min read</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="blog-card">
+                    <div class="blog-image">
+                        <div class="blog-placeholder">
+                            <span>📊</span>
+                        </div>
+                    </div>
+                    <div class="blog-content">
+                        <div class="blog-category">Project Log</div>
+                        <h3>Building an Autonomous UGV: Hardware Insights</h3>
+                        <p class="blog-excerpt">
+                            Behind-the-scenes look at Project MANAS hardware development, covering power distribution, sensor integration, and CAN bus implementation.
+                        </p>
+                        <div class="blog-meta">
+                            <span class="blog-date">Coming Soon</span>
+                            <span class="blog-read-time">14 min read</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="blog-card">
+                    <div class="blog-image">
+                        <div class="blog-placeholder">
+                            <span>🔧</span>
+                        </div>
+                    </div>
+                    <div class="blog-content">
+                        <div class="blog-category">Industry Insights</div>
+                        <h3>The Future of Semiconductor Manufacturing</h3>
+                        <p class="blog-excerpt">
+                            Exploring emerging trends in semiconductor technology, from EUV lithography to quantum computing implications for chip design.
+                        </p>
+                        <div class="blog-meta">
+                            <span class="blog-date">Coming Soon</span>
+                            <span class="blog-read-time">11 min read</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="blogs-cta">
+                <p>More technical articles coming soon! Follow me on LinkedIn for updates.</p>
+                <a href="https://www.linkedin.com/in/kaustubh-pandey-b42082218/" target="_blank" class="btn btn--outline">
+                    Follow on LinkedIn
+                </a>
+            </div>
+        </div>
+    </section>
+
     <!-- Resume Section -->
     <section class="resume" id="resume">
         <div class="container">
@@ -281,7 +416,11 @@
                                 <span class="stat-label">Internships</span>
                             </div>
                         </div>
-                        <a href="KP_Resume.pdf" download="Kaustubh_Pandey_Resume.pdf" class="btn btn--primary btn--lg">
+                        <!-- Google Drive Direct Download -->
+                        <a href="https://drive.google.com/uc?export=download&id=1ABBRMAlDGMKgTIRbXp9XmNFMHZoEv2N5" 
+                           download="Kaustubh_Pandey_Resume.pdf" 
+                           class="btn btn--primary btn--lg"
+                           target="_blank">
                             📥 Download Resume
                         </a>
                     </div>
