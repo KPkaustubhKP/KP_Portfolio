@@ -752,17 +752,6 @@ select.form-control {
   --color-charcoal-700: rgba(31, 33, 33, 1);
   --color-charcoal-800: rgba(38, 40, 40, 1);
   --color-slate-900: rgba(19, 52, 59, 1);
-
-  /* Enhanced VLSI Color Palette */
-  --color-neon-blue: rgba(0, 255, 255, 1);
-  --color-neon-green: rgba(57, 255, 20, 1);
-  --color-neon-purple: rgba(186, 85, 211, 1);
-  --color-neon-orange: rgba(255, 165, 0, 1);
-  --color-neon-pink: rgba(255, 20, 147, 1);
-  --color-electric-blue: rgba(30, 144, 255, 1);
-  --color-cyber-lime: rgba(173, 255, 47, 1);
-
-  /* Original color scheme */
   --color-teal-300: rgba(50, 184, 198, 1);
   --color-teal-400: rgba(45, 166, 178, 1);
   --color-teal-500: rgba(33, 128, 141, 1);
@@ -784,13 +773,7 @@ select.form-control {
   --color-orange-500-rgb: 168, 75, 47;
   --color-orange-400-rgb: 230, 129, 97;
 
-  /* Enhanced RGB colors */
-  --color-neon-blue-rgb: 0, 255, 255;
-  --color-neon-green-rgb: 57, 255, 20;
-  --color-neon-purple-rgb: 186, 85, 211;
-  --color-electric-blue-rgb: 30, 144, 255;
-
-  /* Background color tokens (Light Mode - Default) */
+  /* Background color tokens (Light Mode) */
   --color-bg-1: rgba(59, 130, 246, 0.08); /* Light blue */
   --color-bg-2: rgba(245, 158, 11, 0.08); /* Light yellow */
   --color-bg-3: rgba(34, 197, 94, 0.08); /* Light green */
@@ -800,7 +783,7 @@ select.form-control {
   --color-bg-7: rgba(236, 72, 153, 0.08); /* Light pink */
   --color-bg-8: rgba(6, 182, 212, 0.08); /* Light cyan */
 
-  /* Semantic Color Tokens (Light Mode - Default) */
+  /* Semantic Color Tokens (Light Mode) */
   --color-background: var(--color-cream-50);
   --color-surface: var(--color-cream-100);
   --color-text: var(--color-slate-900);
@@ -830,7 +813,7 @@ select.form-control {
   --select-caret-light: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%23134252' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
   --select-caret-dark: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%23f5f5f5' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
 
-  /* RGB versions for light mode (default) */
+  /* RGB versions for light mode */
   --color-success-rgb: var(--color-teal-500-rgb);
   --color-error-rgb: var(--color-red-500-rgb);
   --color-warning-rgb: var(--color-orange-500-rgb);
@@ -894,6 +877,14 @@ select.form-control {
   --container-md: 768px;
   --container-lg: 1024px;
   --container-xl: 1280px;
+
+  /* Portfolio-specific styles (Light Mode) */
+  --portfolio-primary: var(--color-teal-500);
+  --portfolio-primary-hover: var(--color-teal-600);
+  --portfolio-primary-active: var(--color-teal-700);
+  --portfolio-secondary: var(--color-slate-500);
+  --portfolio-accent: var(--color-teal-500);
+  --portfolio-gradient: linear-gradient(135deg, var(--portfolio-primary) 0%, var(--portfolio-accent) 100%);
 }
 
 /* Dark mode colors */
@@ -927,27 +918,34 @@ select.form-control {
     --color-secondary-hover: rgba(var(--color-gray-400-rgb), 0.25);
     --color-secondary-active: rgba(var(--color-gray-400-rgb), 0.3);
     --color-border: rgba(var(--color-gray-400-rgb), 0.3);
+    --color-btn-primary-text: var(--color-slate-900);
+    --color-card-border: rgba(var(--color-gray-400-rgb), 0.2);
+    --color-card-border-inner: rgba(var(--color-gray-400-rgb), 0.15);
     --color-error: var(--color-red-400);
     --color-success: var(--color-teal-300);
     --color-warning: var(--color-orange-400);
     --color-info: var(--color-gray-300);
     --color-focus-ring: rgba(var(--color-teal-300-rgb), 0.4);
-    --color-btn-primary-text: var(--color-slate-900);
-    --color-card-border: rgba(var(--color-gray-400-rgb), 0.2);
-    --color-card-border-inner: rgba(var(--color-gray-400-rgb), 0.15);
-    --shadow-inset-sm: inset 0 1px 0 rgba(255, 255, 255, 0.1), inset 0 -1px 0 rgba(0, 0, 0, 0.15);
-    --color-border-secondary: rgba(var(--color-gray-400-rgb), 0.2);
     --color-select-caret: rgba(var(--color-gray-200-rgb), 0.8);
+    --shadow-inset-sm: inset 0 1px 0 rgba(255, 255, 255, 0.1), inset 0 -1px 0 rgba(0, 0, 0, 0.15);
 
     /* RGB versions for dark mode */
     --color-success-rgb: var(--color-teal-300-rgb);
     --color-error-rgb: var(--color-red-400-rgb);
     --color-warning-rgb: var(--color-orange-400-rgb);
     --color-info-rgb: var(--color-gray-300-rgb);
+
+    /* Portfolio-specific styles (Dark Mode) */
+    --portfolio-primary: var(--color-teal-300);
+    --portfolio-primary-hover: var(--color-teal-400);
+    --portfolio-primary-active: var(--color-teal-800);
+    --portfolio-secondary: var(--color-gray-300);
+    --portfolio-accent: var(--color-teal-300);
+    --portfolio-gradient: linear-gradient(135deg, var(--portfolio-primary) 0%, var(--portfolio-accent) 100%);
   }
 }
 
-/* Data attribute for manual theme switching - Dark Mode */
+/* Data attribute for manual theme switching */
 [data-color-scheme="dark"] {
   /* RGB versions for opacity control (dark mode) */
   --color-gray-400-rgb: 119, 124, 124;
@@ -956,14 +954,14 @@ select.form-control {
   --color-gray-200-rgb: 245, 245, 245;
 
   /* Background color tokens (Dark Mode) */
-  --color-bg-1: rgba(29, 78, 216, 0.15);
-  --color-bg-2: rgba(180, 83, 9, 0.15);
-  --color-bg-3: rgba(21, 128, 61, 0.15);
-  --color-bg-4: rgba(185, 28, 28, 0.15);
-  --color-bg-5: rgba(107, 33, 168, 0.15);
-  --color-bg-6: rgba(194, 65, 12, 0.15);
-  --color-bg-7: rgba(190, 24, 93, 0.15);
-  --color-bg-8: rgba(8, 145, 178, 0.15);
+  --color-bg-1: rgba(29, 78, 216, 0.15); /* Dark blue */
+  --color-bg-2: rgba(180, 83, 9, 0.15); /* Dark yellow */
+  --color-bg-3: rgba(21, 128, 61, 0.15); /* Dark green */
+  --color-bg-4: rgba(185, 28, 28, 0.15); /* Dark red */
+  --color-bg-5: rgba(107, 33, 168, 0.15); /* Dark purple */
+  --color-bg-6: rgba(194, 65, 12, 0.15); /* Dark orange */
+  --color-bg-7: rgba(190, 24, 93, 0.15); /* Dark pink */
+  --color-bg-8: rgba(8, 145, 178, 0.15); /* Dark cyan */
 
   /* Semantic Color Tokens (Dark Mode) */
   --color-background: var(--color-charcoal-700);
@@ -978,34 +976,41 @@ select.form-control {
   --color-secondary-active: rgba(var(--color-gray-400-rgb), 0.3);
   --color-border: rgba(var(--color-gray-400-rgb), 0.3);
   --color-btn-primary-text: var(--color-slate-900);
-  --color-card-border: rgba(var(--color-gray-400-rgb), 0.15);
+  --color-card-border: rgba(var(--color-gray-400-rgb), 0.2);
   --color-card-border-inner: rgba(var(--color-gray-400-rgb), 0.15);
   --color-error: var(--color-red-400);
   --color-success: var(--color-teal-300);
   --color-warning: var(--color-orange-400);
   --color-info: var(--color-gray-300);
   --color-focus-ring: rgba(var(--color-teal-300-rgb), 0.4);
-  --shadow-inset-sm: inset 0 1px 0 rgba(255, 255, 255, 0.1), inset 0 -1px 0 rgba(0, 0, 0, 0.15);
-  --color-border-secondary: rgba(var(--color-gray-400-rgb), 0.2);
   --color-select-caret: rgba(var(--color-gray-200-rgb), 0.8);
+  --shadow-inset-sm: inset 0 1px 0 rgba(255, 255, 255, 0.1), inset 0 -1px 0 rgba(0, 0, 0, 0.15);
 
   /* RGB versions for dark mode */
   --color-success-rgb: var(--color-teal-300-rgb);
   --color-error-rgb: var(--color-red-400-rgb);
   --color-warning-rgb: var(--color-orange-400-rgb);
   --color-info-rgb: var(--color-gray-300-rgb);
+
+  /* Portfolio-specific styles (Dark Mode) */
+  --portfolio-primary: var(--color-teal-300);
+  --portfolio-primary-hover: var(--color-teal-400);
+  --portfolio-primary-active: var(--color-teal-800);
+  --portfolio-secondary: var(--color-gray-300);
+  --portfolio-accent: var(--color-teal-300);
+  --portfolio-gradient: linear-gradient(135deg, var(--portfolio-primary) 0%, var(--portfolio-accent) 100%);
 }
 
 [data-color-scheme="light"] {
   /* Background color tokens (Light Mode) */
-  --color-bg-1: rgba(59, 130, 246, 0.08);
-  --color-bg-2: rgba(245, 158, 11, 0.08);
-  --color-bg-3: rgba(34, 197, 94, 0.08);
-  --color-bg-4: rgba(239, 68, 68, 0.08);
-  --color-bg-5: rgba(147, 51, 234, 0.08);
-  --color-bg-6: rgba(249, 115, 22, 0.08);
-  --color-bg-7: rgba(236, 72, 153, 0.08);
-  --color-bg-8: rgba(6, 182, 212, 0.08);
+  --color-bg-1: rgba(59, 130, 246, 0.08); /* Light blue */
+  --color-bg-2: rgba(245, 158, 11, 0.08); /* Light yellow */
+  --color-bg-3: rgba(34, 197, 94, 0.08); /* Light green */
+  --color-bg-4: rgba(239, 68, 68, 0.08); /* Light red */
+  --color-bg-5: rgba(147, 51, 234, 0.08); /* Light purple */
+  --color-bg-6: rgba(249, 115, 22, 0.08); /* Light orange */
+  --color-bg-7: rgba(236, 72, 153, 0.08); /* Light pink */
+  --color-bg-8: rgba(6, 182, 212, 0.08); /* Light cyan */
 
   /* Semantic Color Tokens (Light Mode) */
   --color-background: var(--color-cream-50);
@@ -1034,6 +1039,14 @@ select.form-control {
   --color-error-rgb: var(--color-red-500-rgb);
   --color-warning-rgb: var(--color-orange-500-rgb);
   --color-info-rgb: var(--color-slate-500-rgb);
+
+  /* Portfolio-specific styles (Light Mode) */
+  --portfolio-primary: var(--color-teal-500);
+  --portfolio-primary-hover: var(--color-teal-600);
+  --portfolio-primary-active: var(--color-teal-700);
+  --portfolio-secondary: var(--color-slate-500);
+  --portfolio-accent: var(--color-teal-500);
+  --portfolio-gradient: linear-gradient(135deg, var(--portfolio-primary) 0%, var(--portfolio-accent) 100%);
 }
 
 /* Base styles */
@@ -1096,9 +1109,7 @@ code, pre {
   border-radius: var(--radius-sm);
 }
 
-code { 
-  padding: var(--space-1) var(--space-4); 
-}
+code { padding: var(--space-1) var(--space-4); }
 
 pre {
   padding: var(--space-16);
@@ -1120,7 +1131,7 @@ pre code {
   padding: var(--space-8) var(--space-16);
   border-radius: var(--radius-base);
   font-size: var(--font-size-base);
-  font-weight: 500;
+  font-weight: var(--font-weight-medium);
   line-height: 1.5;
   cursor: pointer;
   transition: all var(--duration-normal) var(--ease-standard);
@@ -1222,14 +1233,12 @@ select.form-control {
   padding-right: var(--space-32);
 }
 
-/* Add a dark mode specific caret */
 @media (prefers-color-scheme: dark) {
   select.form-control {
     background-image: var(--select-caret-dark);
   }
 }
 
-/* Also handle data-color-scheme */
 [data-color-scheme="dark"] select.form-control {
   background-image: var(--select-caret-dark);
 }
@@ -1277,7 +1286,7 @@ select.form-control {
   border-bottom: 1px solid var(--color-card-border-inner);
 }
 
-/* Status indicators - simplified with CSS variables */
+/* Status indicators */
 .status {
   display: inline-flex;
   align-items: center;
@@ -1365,50 +1374,9 @@ select.form-control {
   outline-offset: 2px;
 }
 
-/* Dark mode specifics */
-[data-color-scheme="dark"] .btn--outline {
-  border: 1px solid var(--color-border-secondary);
-}
-
 @font-face {
   font-family: 'FKGroteskNeue';
   src: url('https://r2cdn.perplexity.ai/fonts/FKGroteskNeue.woff2') format('woff2');
-}
-
-/* Portfolio-specific styles */
-:root {
-  --portfolio-primary: #2563eb;
-  --portfolio-primary-hover: #1d4ed8;
-  --portfolio-primary-active: #1e40af;
-  --portfolio-secondary: #64748b;
-  --portfolio-accent: #3b82f6;
-  --portfolio-gradient: linear-gradient(135deg, var(--portfolio-primary) 0%, var(--portfolio-accent) 100%);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --portfolio-primary: #60a5fa;
-    --portfolio-primary-hover: #3b82f6;
-    --portfolio-primary-active: #2563eb;
-    --portfolio-secondary: #94a3b8;
-    --portfolio-accent: #3b82f6;
-  }
-}
-
-[data-color-scheme="dark"] {
-  --portfolio-primary: #60a5fa;
-  --portfolio-primary-hover: #3b82f6;
-  --portfolio-primary-active: #2563eb;
-  --portfolio-secondary: #94a3b8;
-  --portfolio-accent: #3b82f6;
-}
-
-[data-color-scheme="light"] {
-  --portfolio-primary: #2563eb;
-  --portfolio-primary-hover: #1d4ed8;
-  --portfolio-primary-active: #1e40af;
-  --portfolio-secondary: #64748b;
-  --portfolio-accent: #3b82f6;
 }
 
 /* Navigation */
@@ -1417,11 +1385,25 @@ select.form-control {
   top: 0;
   left: 0;
   right: 0;
-  background: rgba(var(--color-surface), 0.95);
+  background: rgba(255, 255, 253, 0.95);
   backdrop-filter: blur(10px);
   border-bottom: 1px solid var(--color-border);
   z-index: 1000;
   transition: all var(--duration-normal) var(--ease-standard);
+}
+
+@media (prefers-color-scheme: dark) {
+  .navbar {
+    background: rgba(38, 40, 40, 0.95);
+  }
+}
+
+[data-color-scheme="dark"] .navbar {
+  background: rgba(38, 40, 40, 0.95);
+}
+
+[data-color-scheme="light"] .navbar {
+  background: rgba(255, 255, 253, 0.95);
 }
 
 .nav-container {
@@ -1512,7 +1494,7 @@ select.form-control {
   display: none;
   flex-direction: column;
   cursor: pointer;
-  gap: 4px;
+  gap: var(--space-4);
 }
 
 .nav-hamburger span {
@@ -1523,7 +1505,7 @@ select.form-control {
   transition: all var(--duration-normal) var(--ease-standard);
 }
 
-/* Enhanced Colorful VLSI Hero Section */
+/* VLSI Circuit Board Hero Section */
 .hero {
   position: relative;
   overflow: hidden;
@@ -1532,21 +1514,21 @@ select.form-control {
   justify-content: center;
   min-height: 100vh;
   text-align: center;
-  background: radial-gradient(ellipse at center, #f1f5f9 0%, #e2e8f0 100%);
+  background: var(--color-cream-50);
 }
 
 @media (prefers-color-scheme: dark) {
   .hero {
-    background: radial-gradient(ellipse at center, #0a0e1a 0%, #050810 100%);
+    background: #0a0e1a;
   }
 }
 
 [data-color-scheme="dark"] .hero {
-  background: radial-gradient(ellipse at center, #0a0e1a 0%, #050810 100%);
+  background: #0a0e1a;
 }
 
 [data-color-scheme="light"] .hero {
-  background: radial-gradient(ellipse at center, #f1f5f9 0%, #e2e8f0 100%);
+  background: var(--color-cream-50);
 }
 
 .hero .container {
@@ -1563,29 +1545,29 @@ select.form-control {
   z-index: 3;
 }
 
-/* Enhanced Circuit Background with Vibrant Colors */
+/* Circuit Background Components */
 .hero-circuit-background {
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  opacity: 0.3;
+  opacity: 0.15;
   z-index: 1;
 }
 
 @media (prefers-color-scheme: dark) {
   .hero-circuit-background {
-    opacity: 0.6;
+    opacity: 0.3;
   }
 }
 
 [data-color-scheme="dark"] .hero-circuit-background {
-  opacity: 0.6;
+  opacity: 0.3;
 }
 
 [data-color-scheme="light"] .hero-circuit-background {
-  opacity: 0.3;
+  opacity: 0.15;
 }
 
 .circuit-pattern {
@@ -1595,31 +1577,26 @@ select.form-control {
   width: 100%;
   height: 100%;
   background-image: 
-    /* Neon circuit traces */
-    linear-gradient(90deg, var(--color-neon-blue) 0%, transparent 2px),
-    linear-gradient(90deg, var(--color-neon-green) 0%, transparent 1px),
-    linear-gradient(90deg, var(--color-electric-blue) 0%, transparent 1px),
-    /* Vertical traces */
-    linear-gradient(0deg, var(--color-neon-blue) 0%, transparent 2px),
-    linear-gradient(0deg, var(--color-cyber-lime) 0%, transparent 1px),
-    linear-gradient(0deg, var(--color-neon-purple) 0%, transparent 1px),
-    /* Circuit nodes */
-    radial-gradient(circle at 20% 30%, var(--color-neon-blue) 1px, transparent 2px),
-    radial-gradient(circle at 80% 20%, var(--color-neon-green) 1px, transparent 2px),
-    radial-gradient(circle at 40% 70%, var(--color-electric-blue) 1px, transparent 2px),
-    radial-gradient(circle at 90% 80%, var(--color-neon-purple) 1px, transparent 2px);
+    linear-gradient(90deg, var(--color-teal-500) 0%, transparent 2px),
+    linear-gradient(90deg, var(--portfolio-primary) 0%, transparent 1px),
+    linear-gradient(0deg, var(--color-teal-500) 0%, transparent 2px),
+    linear-gradient(0deg, var(--portfolio-primary) 0%, transparent 1px),
+    radial-gradient(circle at 20% 30%, var(--color-teal-500) 1px, transparent 2px),
+    radial-gradient(circle at 80% 20%, var(--portfolio-primary) 1px, transparent 2px),
+    radial-gradient(circle at 40% 70%, var(--color-teal-500) 1px, transparent 2px),
+    radial-gradient(circle at 90% 80%, var(--portfolio-primary) 1px, transparent 2px),
+    radial-gradient(circle at 10% 90%, var(--color-teal-500) 1px, transparent 2px);
   background-size: 
     200px 200px,
     40px 40px,
-    60px 60px,
     200px 200px,
     40px 40px,
-    80px 80px,
     100px 100px,
     150px 150px,
     120px 120px,
-    80px 80px;
-  animation: circuitFloat 25s linear infinite;
+    80px 80px,
+    90px 90px;
+  animation: circuitFloat 30s linear infinite;
 }
 
 .circuit-nodes {
@@ -1629,24 +1606,26 @@ select.form-control {
   width: 100%;
   height: 100%;
   background-image:
-    /* Glowing IC nodes */
-    radial-gradient(circle at 15% 25%, var(--color-neon-blue) 4px, rgba(0, 255, 255, 0.3) 6px, transparent 8px),
-    radial-gradient(circle at 85% 15%, var(--color-neon-green) 3px, rgba(57, 255, 20, 0.3) 5px, transparent 7px),
-    radial-gradient(circle at 45% 65%, var(--color-electric-blue) 3px, rgba(30, 144, 255, 0.3) 5px, transparent 7px),
-    radial-gradient(circle at 75% 85%, var(--color-neon-purple) 4px, rgba(186, 85, 211, 0.3) 6px, transparent 8px),
-    radial-gradient(circle at 25% 75%, var(--color-cyber-lime) 3px, rgba(173, 255, 47, 0.3) 5px, transparent 7px),
-    /* Large processor representations */
-    radial-gradient(circle at 35% 35%, var(--color-neon-orange) 10px, rgba(255, 165, 0, 0.2) 12px, transparent 15px),
-    radial-gradient(circle at 65% 65%, var(--color-neon-pink) 8px, rgba(255, 20, 147, 0.2) 10px, transparent 13px);
+    radial-gradient(circle at 15% 25%, var(--color-teal-500) 3px, transparent 4px),
+    radial-gradient(circle at 85% 15%, var(--portfolio-primary) 2px, transparent 3px),
+    radial-gradient(circle at 45% 65%, var(--color-teal-500) 2px, transparent 3px),
+    radial-gradient(circle at 75% 85%, var(--portfolio-primary) 3px, transparent 4px),
+    radial-gradient(circle at 25% 75%, var(--color-teal-500) 2px, transparent 3px),
+    radial-gradient(circle at 95% 45%, var(--portfolio-primary) 2px, transparent 3px),
+    radial-gradient(circle at 5% 55%, var(--color-teal-500) 3px, transparent 4px),
+    radial-gradient(circle at 35% 35%, var(--color-teal-500) 8px, transparent 9px),
+    radial-gradient(circle at 65% 65%, var(--portfolio-primary) 6px, transparent 7px);
   background-size: 
     300px 300px,
     250px 250px,
     200px 200px,
     350px 350px,
     180px 180px,
+    220px 220px,
+    160px 160px,
     400px 400px,
     320px 320px;
-  animation: circuitPulse 15s ease-in-out infinite;
+  animation: circuitPulse 20s ease-in-out infinite;
 }
 
 .circuit-traces {
@@ -1656,56 +1635,16 @@ select.form-control {
   width: 100%;
   height: 100%;
   background-image:
-    /* Complex glowing traces */
-    linear-gradient(45deg, transparent 40%, var(--color-neon-blue) 41%, var(--color-neon-blue) 43%, transparent 44%),
-    linear-gradient(135deg, transparent 60%, var(--color-neon-green) 61%, var(--color-neon-green) 62%, transparent 63%),
-    linear-gradient(90deg, transparent 30%, var(--color-electric-blue) 31%, var(--color-electric-blue) 32%, transparent 33%),
-    linear-gradient(0deg, transparent 70%, var(--color-neon-purple) 71%, var(--color-neon-purple) 72%, transparent 73%),
-    linear-gradient(225deg, transparent 45%, var(--color-cyber-lime) 46%, var(--color-cyber-lime) 47%, transparent 48%);
+    linear-gradient(45deg, transparent 40%, var(--color-teal-500) 41%, var(--color-teal-500) 43%, transparent 44%),
+    linear-gradient(135deg, transparent 60%, var(--portfolio-primary) 61%, var(--portfolio-primary) 62%, transparent 63%),
+    linear-gradient(90deg, transparent 30%, var(--color-teal-500) 31%, var(--color-teal-500) 32%, transparent 33%),
+    linear-gradient(0deg, transparent 70%, var(--portfolio-primary) 71%, var(--portfolio-primary) 72%, transparent 73%);
   background-size: 
     150px 150px,
     200px 200px,
     100px 100px,
-    250px 250px,
-    120px 120px;
-  animation: circuitGlow 20s ease-in-out infinite;
-}
-
-.circuit-particles {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-image:
-    /* Floating data particles */
-    radial-gradient(circle at 10% 10%, rgba(0, 255, 255, 0.8) 1px, transparent 2px),
-    radial-gradient(circle at 90% 90%, rgba(57, 255, 20, 0.8) 1px, transparent 2px),
-    radial-gradient(circle at 30% 80%, rgba(30, 144, 255, 0.8) 1px, transparent 2px),
-    radial-gradient(circle at 70% 20%, rgba(186, 85, 211, 0.8) 1px, transparent 2px),
-    radial-gradient(circle at 50% 50%, rgba(173, 255, 47, 0.8) 1px, transparent 2px);
-  background-size: 
-    50px 50px,
-    60px 60px,
-    40px 40px,
-    70px 70px,
-    45px 45px;
-  animation: particleStream 30s linear infinite;
-}
-
-.neon-effects {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-image:
-    /* Neon glow effects */
-    radial-gradient(ellipse 200px 100px at 20% 30%, rgba(0, 255, 255, 0.1), transparent),
-    radial-gradient(ellipse 150px 150px at 80% 70%, rgba(57, 255, 20, 0.1), transparent),
-    radial-gradient(ellipse 180px 120px at 60% 20%, rgba(30, 144, 255, 0.1), transparent),
-    radial-gradient(ellipse 120px 200px at 30% 80%, rgba(186, 85, 211, 0.1), transparent);
-  animation: neonGlow 25s ease-in-out infinite;
+    250px 250px;
+  animation: circuitGlow 25s ease-in-out infinite;
 }
 
 .hero-overlay {
@@ -1714,22 +1653,22 @@ select.form-control {
   left: 0;
   width: 100%;
   height: 100%;
-  background: rgba(241, 245, 249, 0.6);
+  background: rgba(252, 252, 249, 0.8);
   z-index: 2;
 }
 
 @media (prefers-color-scheme: dark) {
   .hero-overlay {
-    background: rgba(10, 14, 26, 0.5);
+    background: rgba(10, 14, 26, 0.7);
   }
 }
 
 [data-color-scheme="dark"] .hero-overlay {
-  background: rgba(10, 14, 26, 0.5);
+  background: rgba(10, 14, 26, 0.7);
 }
 
 [data-color-scheme="light"] .hero-overlay {
-  background: rgba(241, 245, 249, 0.6);
+  background: rgba(252, 252, 249, 0.8);
 }
 
 .hero-title {
@@ -1739,31 +1678,22 @@ select.form-control {
 .hero-name {
   font-size: clamp(2.5rem, 5vw, 4rem);
   font-weight: var(--font-weight-bold);
-  background: linear-gradient(135deg, var(--color-neon-blue) 0%, var(--color-neon-green) 50%, var(--color-electric-blue) 100%);
+  background: var(--portfolio-gradient);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
   display: block;
   margin-bottom: var(--space-16);
-  text-shadow: 0 0 30px rgba(0, 255, 255, 0.5);
-  filter: drop-shadow(0 0 10px rgba(0, 255, 255, 0.3));
 }
 
 @media (prefers-color-scheme: dark) {
   .hero-name {
-    text-shadow: 0 0 30px rgba(0, 255, 255, 0.5);
-    filter: drop-shadow(0 0 10px rgba(0, 255, 255, 0.3));
+    text-shadow: 0 0 30px rgba(50, 184, 198, 0.5);
   }
 }
 
-[data-color-scheme="light"] .hero-name {
-  text-shadow: none;
-  filter: none;
-}
-
 [data-color-scheme="dark"] .hero-name {
-  text-shadow: 0 0 30px rgba(0, 255, 255, 0.5);
-  filter: drop-shadow(0 0 10px rgba(0, 255, 255, 0.3));
+  text-shadow: 0 0 30px rgba(50, 184, 198, 0.5);
 }
 
 .hero-tagline {
@@ -1772,24 +1702,16 @@ select.form-control {
   font-weight: var(--font-weight-medium);
   margin-bottom: var(--space-24);
   min-height: 1.5em;
-  text-shadow: 0 0 20px rgba(0, 255, 255, 0.4);
 }
 
 @media (prefers-color-scheme: dark) {
   .hero-tagline {
-    color: var(--color-neon-blue);
-    text-shadow: 0 0 20px rgba(0, 255, 255, 0.4);
+    text-shadow: 0 0 20px rgba(50, 184, 198, 0.3);
   }
 }
 
 [data-color-scheme="dark"] .hero-tagline {
-  color: var(--color-neon-blue);
-  text-shadow: 0 0 20px rgba(0, 255, 255, 0.4);
-}
-
-[data-color-scheme="light"] .hero-tagline {
-  text-shadow: none;
-  color: var(--portfolio-primary);
+  text-shadow: 0 0 20px rgba(50, 184, 198, 0.3);
 }
 
 .hero-description {
@@ -1800,7 +1722,6 @@ select.form-control {
   max-width: 700px;
   margin-left: auto;
   margin-right: auto;
-  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
 }
 
 @media (prefers-color-scheme: dark) {
@@ -1815,11 +1736,6 @@ select.form-control {
   text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
 }
 
-[data-color-scheme="light"] .hero-description {
-  text-shadow: none;
-  color: var(--color-text-secondary);
-}
-
 .hero-buttons {
   display: flex;
   gap: var(--space-16);
@@ -1827,58 +1743,25 @@ select.form-control {
   flex-wrap: wrap;
 }
 
-/* Enhanced Circuit Animations */
+/* Circuit Animations */
 @keyframes circuitFloat {
   0%, 100% { transform: translate(0, 0) rotate(0deg); }
-  25% { transform: translate(-8px, -5px) rotate(1deg); }
-  50% { transform: translate(12px, -10px) rotate(-1deg); }
-  75% { transform: translate(-6px, 8px) rotate(0.5deg); }
+  25% { transform: translate(-5px, -5px) rotate(0.5deg); }
+  50% { transform: translate(10px, -10px) rotate(-0.5deg); }
+  75% { transform: translate(-10px, 5px) rotate(0.3deg); }
 }
 
 @keyframes circuitPulse {
-  0%, 100% { opacity: 0.6; transform: scale(1); }
-  25% { opacity: 0.8; transform: scale(1.05); }
-  50% { opacity: 0.4; transform: scale(0.95); }
-  75% { opacity: 0.9; transform: scale(1.02); }
+  0%, 100% { opacity: 0.3; transform: scale(1); }
+  25% { opacity: 0.5; transform: scale(1.02); }
+  50% { opacity: 0.4; transform: scale(0.98); }
+  75% { opacity: 0.6; transform: scale(1.01); }
 }
 
 @keyframes circuitGlow {
-  0%, 100% { 
-    opacity: 0.3; 
-    filter: brightness(1) hue-rotate(0deg); 
-  }
-  33% { 
-    opacity: 0.6; 
-    filter: brightness(1.3) hue-rotate(90deg); 
-  }
-  66% { 
-    opacity: 0.4; 
-    filter: brightness(0.8) hue-rotate(180deg); 
-  }
-}
-
-@keyframes particleStream {
-  0% { transform: translateY(0) translateX(0); }
-  100% { transform: translateY(-100px) translateX(50px); }
-}
-
-@keyframes neonGlow {
-  0%, 100% { 
-    opacity: 0.2; 
-    filter: hue-rotate(0deg) brightness(1); 
-  }
-  25% { 
-    opacity: 0.4; 
-    filter: hue-rotate(90deg) brightness(1.2); 
-  }
-  50% { 
-    opacity: 0.3; 
-    filter: hue-rotate(180deg) brightness(0.9); 
-  }
-  75% { 
-    opacity: 0.5; 
-    filter: hue-rotate(270deg) brightness(1.1); 
-  }
+  0%, 100% { opacity: 0.2; filter: brightness(1); }
+  33% { opacity: 0.4; filter: brightness(1.2); }
+  66% { opacity: 0.3; filter: brightness(0.9); }
 }
 
 /* Section Styling */
@@ -1920,7 +1803,7 @@ section.visible {
   color: var(--color-text);
 }
 
-/* About Section with Profile Image */
+/* About Section */
 .about {
   background: var(--color-surface);
 }
@@ -1968,205 +1851,159 @@ section.visible {
   justify-content: center;
 }
 
-.profile-photo {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.profile-img {
+.image-placeholder {
   width: 300px;
   height: 300px;
-  object-fit: cover;
+  background: var(--color-bg-2);
   border-radius: var(--radius-lg);
-  border: 3px solid var(--portfolio-primary);
-  box-shadow: var(--shadow-lg);
-  transition: transform var(--duration-normal) var(--ease-standard);
-}
-
-.profile-img:hover {
-  transform: scale(1.05);
-}
-
-/* Interactive Timeline Section */
-.timeline {
-  background: var(--color-bg-1);
-}
-
-.timeline-container {
-  max-width: 800px;
-  margin: 0 auto;
-  position: relative;
-}
-
-.timeline-line {
-  position: absolute;
-  left: 50px;
-  top: 0;
-  bottom: 0;
-  width: 3px;
-  background: linear-gradient(to bottom, var(--portfolio-primary), var(--color-neon-blue));
-  border-radius: 2px;
-}
-
-.timeline-item {
-  display: grid;
-  grid-template-columns: 100px 1fr;
-  gap: var(--space-24);
-  margin-bottom: var(--space-32);
-  position: relative;
-  cursor: pointer;
-  transition: all var(--duration-normal) var(--ease-standard);
-}
-
-.timeline-item:hover {
-  transform: translateX(10px);
-}
-
-.timeline-marker {
-  width: 80px;
-  height: 80px;
-  border-radius: 50%;
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
-  font-weight: var(--font-weight-bold);
-  font-size: var(--font-size-lg);
-  position: relative;
-  z-index: 2;
-  border: 3px solid var(--color-background);
-  box-shadow: 0 0 0 3px var(--portfolio-primary);
+  border: 2px dashed var(--color-border);
+  color: var(--color-text-secondary);
 }
 
-.timeline-marker.current {
-  background: linear-gradient(135deg, var(--color-neon-blue), var(--color-neon-green));
-  color: var(--color-slate-900);
-  animation: timelinePulse 2s ease-in-out infinite;
+.image-placeholder span {
+  font-size: 4rem;
+  margin-bottom: var(--space-16);
 }
 
-.timeline-marker.professional {
-  background: linear-gradient(135deg, var(--color-neon-purple), var(--color-electric-blue));
-  color: var(--color-slate-900);
+/* Projects Section */
+.projects {
+  background: var(--color-bg-3);
 }
 
-.timeline-marker.project {
-  background: linear-gradient(135deg, var(--color-neon-orange), var(--color-neon-pink));
-  color: var(--color-slate-900);
+.projects-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  gap: var(--space-24);
+  margin-bottom: var(--space-32);
 }
 
-.timeline-marker.education {
-  background: linear-gradient(135deg, var(--color-cyber-lime), var(--color-neon-green));
-  color: var(--color-slate-900);
+.all-projects-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  gap: var(--space-24);
 }
 
-.timeline-year {
-  font-size: var(--font-size-sm);
-}
-
-.timeline-content {
-  flex: 1;
-}
-
-.timeline-card {
+.project-card {
   background: var(--color-surface);
   border-radius: var(--radius-lg);
   padding: var(--space-24);
   border: 1px solid var(--color-card-border);
-  border-left: 4px solid var(--portfolio-primary);
   transition: all var(--duration-normal) var(--ease-standard);
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
 }
 
-.timeline-card:hover {
+.project-card:hover {
+  transform: translateY(-5px);
   box-shadow: var(--shadow-lg);
-  transform: translateY(-2px);
+  border-color: var(--portfolio-primary);
 }
 
-.timeline-card h3 {
+.project-card:hover .tech-tag {
+  transform: translateY(-1px);
+}
+
+.project-card:hover .project-status {
+  transform: scale(1.05);
+}
+
+.project-card.featured {
+  border-left: 4px solid var(--portfolio-primary);
+}
+
+.project-card.hidden {
+  display: none;
+}
+
+.project-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: var(--space-16);
+  gap: var(--space-16);
+}
+
+.project-card h3 {
   color: var(--color-text);
-  margin-bottom: var(--space-12);
   font-size: var(--font-size-xl);
+  margin: 0;
 }
 
-.timeline-category {
-  display: inline-block;
-  padding: var(--space-4) var(--space-12);
-  border-radius: var(--radius-full);
-  font-size: var(--font-size-xs);
+.project-role {
+  color: var(--portfolio-primary);
   font-weight: var(--font-weight-medium);
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-  margin-bottom: var(--space-12);
-}
-
-.timeline-category.competition {
-  background: rgba(var(--color-neon-blue-rgb), 0.2);
-  color: var(--color-neon-blue);
-}
-
-.timeline-category.professional {
-  background: rgba(var(--color-neon-purple-rgb), 0.2);
-  color: var(--color-neon-purple);
-}
-
-.timeline-category.project {
-  background: rgba(var(--color-electric-blue-rgb), 0.2);
-  color: var(--color-electric-blue);
-}
-
-.timeline-category.education {
-  background: rgba(var(--color-neon-green-rgb), 0.2);
-  color: var(--color-neon-green);
-}
-
-.timeline-duration {
   font-size: var(--font-size-sm);
-  color: var(--color-text-secondary);
   margin-bottom: var(--space-12);
-  font-style: italic;
 }
 
-.timeline-card p {
+.project-description {
   color: var(--color-text-secondary);
   line-height: 1.6;
-  margin-bottom: var(--space-16);
+  margin-bottom: var(--space-20);
 }
 
-.timeline-skills {
+.project-technologies {
   display: flex;
   flex-wrap: wrap;
   gap: var(--space-8);
 }
 
-.timeline-skill {
+.tech-tag {
   background: var(--color-bg-1);
   color: var(--color-text);
-  padding: var(--space-4) var(--space-8);
-  border-radius: var(--radius-sm);
-  font-size: var(--font-size-xs);
+  padding: var(--space-4) var(--space-12);
+  border-radius: var(--radius-full);
+  font-size: var(--font-size-sm);
   font-weight: var(--font-weight-medium);
+  border: 1px solid var(--color-border);
+  transition: all var(--duration-fast) var(--ease-standard);
 }
 
-@keyframes timelinePulse {
-  0%, 100% { box-shadow: 0 0 0 3px var(--portfolio-primary); }
-  50% { box-shadow: 0 0 0 6px rgba(var(--color-neon-blue-rgb), 0.3); }
+.project-status {
+  padding: var(--space-4) var(--space-12);
+  border-radius: var(--radius-full);
+  font-size: var(--font-size-xs);
+  font-weight: var(--font-weight-bold);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  white-space: nowrap;
+  transition: all var(--duration-fast) var(--ease-standard);
 }
 
-/* Unified Work & Insights Section */
-.work {
+.project-status.completed {
   background: var(--color-bg-3);
+  color: var(--color-success);
+  border: 1px solid rgba(var(--color-success-rgb), 0.3);
 }
 
-.work-intro {
-  text-align: center;
-  font-size: var(--font-size-lg);
-  color: var(--color-text-secondary);
-  margin-bottom: var(--space-32);
-  max-width: 600px;
-  margin-left: auto;
-  margin-right: auto;
+.project-status.in-progress {
+  background: var(--color-bg-2);
+  color: var(--color-warning);
+  border: 1px solid rgba(var(--color-warning-rgb), 0.3);
 }
 
-.work-filters {
+.project-status.ongoing {
+  background: var(--color-bg-1);
+  color: var(--portfolio-primary);
+  border: 1px solid rgba(var(--color-teal-500-rgb), 0.3);
+}
+
+@media (prefers-color-scheme: dark) {
+  .project-status.ongoing {
+    border: 1px solid rgba(var(--color-teal-300-rgb), 0.3);
+  }
+}
+
+[data-color-scheme="dark"] .project-status.ongoing {
+  border: 1px solid rgba(var(--color-teal-300-rgb), 0.3);
+}
+
+.project-filters {
   display: flex;
   justify-content: center;
   gap: var(--space-16);
@@ -2174,7 +2011,7 @@ section.visible {
   flex-wrap: wrap;
 }
 
-.work-filter-btn {
+.filter-btn {
   background: var(--color-secondary);
   color: var(--color-text);
   border: 1px solid var(--color-border);
@@ -2186,172 +2023,10 @@ section.visible {
   font-size: var(--font-size-sm);
 }
 
-.work-filter-btn:hover, .work-filter-btn.active {
+.filter-btn:hover, .filter-btn.active {
   background: var(--portfolio-primary);
   color: var(--color-btn-primary-text);
   border-color: var(--portfolio-primary);
-}
-
-.work-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-  gap: var(--space-24);
-  margin-bottom: var(--space-32);
-}
-
-.work-card {
-  background: var(--color-surface);
-  border-radius: var(--radius-lg);
-  overflow: hidden;
-  border: 1px solid var(--color-card-border);
-  transition: all var(--duration-normal) var(--ease-standard);
-  cursor: pointer;
-}
-
-.work-card:hover {
-  transform: translateY(-5px);
-  box-shadow: var(--shadow-lg);
-  border-color: var(--portfolio-primary);
-}
-
-.work-image {
-  width: 100%;
-  height: 200px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: var(--color-bg-5);
-}
-
-.work-placeholder {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  color: var(--color-text-secondary);
-}
-
-.work-placeholder span {
-  font-size: 3rem;
-  margin-bottom: var(--space-8);
-}
-
-.work-content {
-  padding: var(--space-20);
-}
-
-.work-category {
-  display: inline-block;
-  padding: var(--space-4) var(--space-12);
-  border-radius: var(--radius-full);
-  font-size: var(--font-size-xs);
-  font-weight: var(--font-weight-medium);
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-  margin-bottom: var(--space-12);
-}
-
-.work-category.projects {
-  background: var(--color-bg-1);
-  color: var(--portfolio-primary);
-}
-
-.work-category.research {
-  background: var(--color-bg-5);
-  color: var(--color-neon-purple);
-}
-
-.work-category.insights {
-  background: var(--color-bg-2);
-  color: var(--color-neon-orange);
-}
-
-.work-category.tutorials {
-  background: var(--color-bg-3);
-  color: var(--color-neon-green);
-}
-
-.work-content h3 {
-  color: var(--color-text);
-  font-size: var(--font-size-xl);
-  margin-bottom: var(--space-12);
-  line-height: var(--line-height-tight);
-}
-
-.work-role {
-  color: var(--portfolio-primary);
-  font-weight: var(--font-weight-medium);
-  font-size: var(--font-size-sm);
-  margin-bottom: var(--space-12);
-}
-
-.work-description {
-  color: var(--color-text-secondary);
-  line-height: 1.6;
-  margin-bottom: var(--space-16);
-}
-
-.work-technologies {
-  display: flex;
-  flex-wrap: wrap;
-  gap: var(--space-8);
-  margin-bottom: var(--space-16);
-}
-
-.tech-tag {
-  background: var(--color-bg-1);
-  color: var(--color-text);
-  padding: var(--space-4) var(--space-12);
-  border-radius: var(--radius-full);
-  font-size: var(--font-size-sm);
-  font-weight: var(--font-weight-medium);
-  border: 1px solid var(--color-border);
-}
-
-.work-status, .work-meta {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  font-size: var(--font-size-sm);
-  color: var(--color-text-secondary);
-}
-
-.work-status {
-  padding: var(--space-4) var(--space-12);
-  border-radius: var(--radius-full);
-  font-size: var(--font-size-xs);
-  font-weight: var(--font-weight-bold);
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-}
-
-.work-status.completed {
-  background: var(--color-bg-3);
-  color: var(--color-success);
-}
-
-.work-status.ongoing {
-  background: var(--color-bg-1);
-  color: var(--portfolio-primary);
-}
-
-.work-status.coming-soon {
-  background: var(--color-bg-2);
-  color: var(--color-warning);
-}
-
-.work-read-time {
-  opacity: 0.7;
-}
-
-.work-cta {
-  text-align: center;
-}
-
-.work-cta p {
-  font-size: var(--font-size-lg);
-  color: var(--color-text-secondary);
-  margin-bottom: var(--space-24);
 }
 
 /* Skills Section */
@@ -2398,6 +2073,121 @@ section.visible {
 .skill-tag:hover {
   background: var(--portfolio-primary-hover);
   transform: translateY(-2px);
+}
+
+/* Blogs Section */
+.blogs {
+  background: var(--color-bg-4);
+}
+
+.blogs-intro {
+  text-align: center;
+  font-size: var(--font-size-lg);
+  color: var(--color-text-secondary);
+  margin-bottom: var(--space-32);
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.blogs-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  gap: var(--space-24);
+  margin-bottom: var(--space-32);
+}
+
+.blog-card {
+  background: var(--color-surface);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  border: 1px solid var(--color-card-border);
+  transition: all var(--duration-normal) var(--ease-standard);
+  cursor: pointer;
+}
+
+.blog-card:hover {
+  transform: translateY(-5px);
+  box-shadow: var(--shadow-lg);
+  border-color: var(--portfolio-primary);
+}
+
+.blog-image {
+  width: 100%;
+  height: 200px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--color-bg-5);
+}
+
+.blog-placeholder {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-text-secondary);
+}
+
+.blog-placeholder span {
+  font-size: 3rem;
+  margin-bottom: var(--space-8);
+}
+
+.blog-content {
+  padding: var(--space-20);
+}
+
+.blog-category {
+  display: inline-block;
+  background: var(--color-bg-1);
+  color: var(--portfolio-primary);
+  padding: var(--space-4) var(--space-12);
+  border-radius: var(--radius-full);
+  font-size: var(--font-size-xs);
+  font-weight: var(--font-weight-medium);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: var(--space-12);
+}
+
+.blog-content h3 {
+  color: var(--color-text);
+  font-size: var(--font-size-xl);
+  margin-bottom: var(--space-12);
+  line-height: var(--line-height-tight);
+}
+
+.blog-excerpt {
+  color: var(--color-text-secondary);
+  line-height: 1.6;
+  margin-bottom: var(--space-16);
+}
+
+.blog-meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: var(--font-size-sm);
+  color: var(--color-text-secondary);
+}
+
+.blog-date {
+  font-weight: var(--font-weight-medium);
+}
+
+.blog-read-time {
+  opacity: 0.7;
+}
+
+.blogs-cta {
+  text-align: center;
+}
+
+.blogs-cta p {
+  font-size: var(--font-size-lg);
+  color: var(--color-text-secondary);
+  margin-bottom: var(--space-24);
 }
 
 /* Resume Section */
@@ -2472,6 +2262,84 @@ section.visible {
 .stat-label {
   font-size: var(--font-size-sm);
   color: var(--color-text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+/* Achievements Section */
+.achievements {
+  background: var(--color-surface);
+}
+
+.achievements-timeline {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.achievement-item {
+  display: grid;
+  grid-template-columns: 100px 1fr;
+  gap: var(--space-24);
+  margin-bottom: var(--space-32);
+  position: relative;
+}
+
+.achievement-item::after {
+  content: '';
+  position: absolute;
+  left: 50px;
+  top: 40px;
+  bottom: -32px;
+  width: 2px;
+  background: var(--color-border);
+}
+
+.achievement-item:last-child::after {
+  display: none;
+}
+
+.achievement-year {
+  background: var(--portfolio-primary);
+  color: var(--color-btn-primary-text);
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: var(--font-weight-bold);
+  font-size: var(--font-size-lg);
+  position: relative;
+  z-index: 1;
+}
+
+.achievement-content {
+  background: var(--color-background);
+  border-radius: var(--radius-lg);
+  padding: var(--space-24);
+  border: 1px solid var(--color-card-border);
+  border-left: 4px solid var(--portfolio-primary);
+}
+
+.achievement-content h3 {
+  color: var(--color-text);
+  margin-bottom: var(--space-12);
+  font-size: var(--font-size-xl);
+}
+
+.achievement-content p {
+  color: var(--color-text-secondary);
+  line-height: 1.6;
+  margin-bottom: var(--space-16);
+}
+
+.achievement-category {
+  background: var(--color-bg-5);
+  color: var(--color-text);
+  padding: var(--space-4) var(--space-12);
+  border-radius: var(--radius-full);
+  font-size: var(--font-size-xs);
+  font-weight: var(--font-weight-medium);
   text-transform: uppercase;
   letter-spacing: 0.05em;
 }
@@ -2587,27 +2455,22 @@ section.visible {
 }
 
 .navbar.scrolled {
-  background: rgba(38, 40, 40, 0.98);
+  background: rgba(255, 255, 253, 0.98);
   box-shadow: var(--shadow-sm);
 }
 
-@media (prefers-color-scheme: light) {
+@media (prefers-color-scheme: dark) {
   .navbar.scrolled {
-    background: rgba(248, 250, 252, 0.98);
+    background: rgba(38, 40, 40, 0.98);
   }
-}
-
-[data-color-scheme="light"] .navbar.scrolled {
-  background: rgba(248, 250, 252, 0.98);
 }
 
 [data-color-scheme="dark"] .navbar.scrolled {
   background: rgba(38, 40, 40, 0.98);
 }
 
-/* Work card filtering */
-.work-card.hidden {
-  display: none;
+[data-color-scheme="light"] .navbar.scrolled {
+  background: rgba(255, 255, 253, 0.98);
 }
 
 /* Responsive Design */
@@ -2664,20 +2527,26 @@ section.visible {
     text-align: center;
   }
 
-  .timeline-item {
-    grid-template-columns: 1fr;
-    text-align: center;
-  }
-
-  .timeline-line {
-    display: none;
-  }
-
   .contact-content {
     grid-template-columns: 1fr;
   }
 
-  .work-grid {
+  .achievement-item {
+    grid-template-columns: 1fr;
+    text-align: center;
+  }
+
+  .achievement-item::after {
+    display: none;
+  }
+
+  .project-filters {
+    justify-content: flex-start;
+    overflow-x: auto;
+    padding: var(--space-8) 0;
+  }
+
+  .projects-grid, .all-projects-grid, .blogs-grid {
     grid-template-columns: 1fr;
   }
 
@@ -2730,27 +2599,11 @@ section.visible {
     font-size: 2.5rem;
   }
 
-  .hero-tagline {
-    font-size: var(--font-size-lg);
-  }
-
-  .hero-description {
-    font-size: var(--font-size-base);
-  }
-
-  .section-title {
-    font-size: var(--font-size-2xl);
-  }
-
-  .section-subtitle {
-    font-size: var(--font-size-xl);
-  }
-
-  .work-card, .skill-category, .contact-form {
+  .project-card, .skill-category, .contact-form, .blog-card {
     padding: var(--space-20);
   }
 
-  .timeline-card {
+  .achievement-content {
     padding: var(--space-20);
   }
 
@@ -2762,31 +2615,68 @@ section.visible {
     font-size: var(--font-size-2xl);
   }
 
-  .work-grid {
-    grid-template-columns: 1fr;
-    gap: var(--space-20);
+  .blog-content {
+    padding: var(--space-16);
   }
 
-  .skills-grid {
-    grid-template-columns: 1fr;
-    gap: var(--space-24);
+  .hero-content {
+    padding: 0 var(--space-12);
   }
 
-  .work-filters {
-    gap: var(--space-8);
+  .hero-title {
+    margin-bottom: var(--space-20);
   }
 
-  .hero-buttons {
+  .hero-tagline {
+    font-size: var(--font-size-lg);
+    margin-bottom: var(--space-20);
+  }
+
+  .hero-description {
+    font-size: var(--font-size-base);
+    margin-bottom: var(--space-24);
+  }
+
+  .section-title {
+    font-size: var(--font-size-2xl);
+    margin-bottom: var(--space-24);
+  }
+
+  .about-interests li {
+    padding-left: var(--space-12);
+    margin-bottom: var(--space-6);
+  }
+
+  .image-placeholder {
+    width: 250px;
+    height: 250px;
+  }
+
+  .image-placeholder span {
+    font-size: 3rem;
+    margin-bottom: var(--space-12);
+  }
+
+  .project-header {
+    flex-direction: column;
     gap: var(--space-12);
   }
 
-  .about-text p {
+  .achievement-year {
+    width: 60px;
+    height: 60px;
     font-size: var(--font-size-base);
   }
 
-  .timeline-marker {
-    width: 60px;
-    height: 60px;
+  .contact-info h3 {
+    font-size: var(--font-size-xl);
+  }
+
+  .contact-info p {
+    font-size: var(--font-size-base);
+  }
+
+  .contact-item span {
     font-size: var(--font-size-base);
   }
 }
