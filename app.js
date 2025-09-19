@@ -1,4 +1,4 @@
-// Portfolio JavaScript Functionality
+// Enhanced Portfolio JavaScript with Fixed Theme Toggle
 document.addEventListener('DOMContentLoaded', function() {
     // Initialize all functionality
     initThemeToggle();
@@ -10,16 +10,19 @@ document.addEventListener('DOMContentLoaded', function() {
     initContactForm();
     initTypewriter();
     initBlogCards();
-    initResume();
+    initPhotoUpload();
+    initResumeDownload();
 });
 
-// Theme Toggle Functionality - Dark Mode Default
+// Theme Toggle Functionality - FIXED
 function initThemeToggle() {
     const themeToggle = document.getElementById('theme-toggle');
     const themeIcon = themeToggle.querySelector('.theme-toggle-icon');
     
-    // Default to dark mode
-    let currentTheme = 'dark';
+    // Check for saved theme preference or default to 'dark'
+    let currentTheme = localStorage.getItem('theme') || 'dark';
+    
+    // Apply the theme immediately
     document.documentElement.setAttribute('data-color-scheme', currentTheme);
     updateThemeIcon(currentTheme);
     
@@ -27,8 +30,16 @@ function initThemeToggle() {
         e.preventDefault();
         e.stopPropagation();
         
+        // Toggle theme
         currentTheme = currentTheme === 'light' ? 'dark' : 'light';
+        
+        // Apply theme to document
         document.documentElement.setAttribute('data-color-scheme', currentTheme);
+        
+        // Save preference
+        localStorage.setItem('theme', currentTheme);
+        
+        // Update icon
         updateThemeIcon(currentTheme);
         
         // Add animation to the toggle button
@@ -41,6 +52,69 @@ function initThemeToggle() {
     function updateThemeIcon(theme) {
         themeIcon.textContent = theme === 'light' ? '🌙' : '☀️';
     }
+}
+
+// Photo Upload Functionality
+function initPhotoUpload() {
+    const uploadBtn = document.getElementById('upload-photo-btn');
+    const photoInput = document.getElementById('photo-input');
+    const profilePhoto = document.getElementById('profile-photo');
+    const placeholder = document.getElementById('photo-placeholder');
+    
+    if (!uploadBtn || !photoInput || !profilePhoto || !placeholder) return;
+    
+    // Check for saved photo in localStorage
+    const savedPhoto = localStorage.getItem('profilePhoto');
+    if (savedPhoto) {
+        profilePhoto.src = savedPhoto;
+        profilePhoto.style.display = 'block';
+        placeholder.style.display = 'none';
+        uploadBtn.textContent = 'Change Photo';
+    }
+    
+    uploadBtn.addEventListener('click', function() {
+        photoInput.click();
+    });
+    
+    photoInput.addEventListener('change', function(e) {
+        const file = e.target.files[0];
+        if (file) {
+            // Validate file type
+            if (!file.type.startsWith('image/')) {
+                showNotification('Please select a valid image file', 'error');
+                return;
+            }
+            
+            // Validate file size (max 5MB)
+            if (file.size > 5 * 1024 * 1024) {
+                showNotification('Image size should be less than 5MB', 'error');
+                return;
+            }
+            
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                const imageData = e.target.result;
+                
+                // Display the image
+                profilePhoto.src = imageData;
+                profilePhoto.style.display = 'block';
+                placeholder.style.display = 'none';
+                uploadBtn.textContent = 'Change Photo';
+                
+                // Save to localStorage
+                localStorage.setItem('profilePhoto', imageData);
+                
+                showNotification('Profile photo updated successfully!', 'success');
+            };
+            reader.readAsDataURL(file);
+        }
+    });
+}
+
+// Resume Download Functionality - FIXED
+function initResumeDownload() {
+    // No need for complex logic, the HTML link handles the download
+    console.log('Resume download initialized - direct link to GitHub PDF');
 }
 
 // Mobile Menu Functionality
@@ -217,7 +291,7 @@ function initProjectFiltering() {
     });
 }
 
-// Enhanced Contact Form with Direct Email Integration
+// Enhanced Contact Form
 function initContactForm() {
     const form = document.getElementById('contact-form');
     const submitBtn = form.querySelector('button[type="submit"]');
@@ -257,7 +331,7 @@ Time: ${new Date().toLocaleString()}`;
         
         // Show loading state
         const originalText = submitBtn.textContent;
-        submitBtn.textContent = 'Sending...';
+        submitBtn.textContent = 'Opening Email Client...';
         submitBtn.disabled = true;
         
         // Create a hidden link and click it to open email client
@@ -270,47 +344,12 @@ Time: ${new Date().toLocaleString()}`;
         
         // Show success message and reset form
         setTimeout(() => {
-            showFormSuccess();
+            showNotification('Email client opened! Please send the message from your email app.', 'success');
             form.reset();
             submitBtn.textContent = originalText;
             submitBtn.disabled = false;
         }, 1000);
     });
-    
-    // Real-time validation
-    const inputs = form.querySelectorAll('input, textarea');
-    inputs.forEach(input => {
-        input.addEventListener('blur', function() {
-            validateField(this);
-        });
-        
-        input.addEventListener('input', function() {
-            clearFieldError(this);
-        });
-    });
-    
-    function validateField(field) {
-        const value = field.value.trim();
-        const fieldName = field.getAttribute('name');
-        let isValid = true;
-        let errorMessage = '';
-        
-        if (!value) {
-            isValid = false;
-            errorMessage = `${fieldName.charAt(0).toUpperCase() + fieldName.slice(1)} is required`;
-        } else if (fieldName === 'email' && !isValidEmail(value)) {
-            isValid = false;
-            errorMessage = 'Please enter a valid email address';
-        }
-        
-        if (!isValid) {
-            showFieldError(field, errorMessage);
-        } else {
-            clearFieldError(field);
-        }
-        
-        return isValid;
-    }
     
     function validateForm(name, email, subject, message) {
         const errors = [];
@@ -325,130 +364,16 @@ Time: ${new Date().toLocaleString()}`;
         if (!message) errors.push('Message is required');
         
         if (errors.length > 0) {
-            showFormErrors(errors);
+            showNotification(errors.join(', '), 'error');
             return false;
         }
         
-        clearFormErrors();
         return true;
     }
     
     function isValidEmail(email) {
         const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
         return emailRegex.test(email);
-    }
-    
-    function showFieldError(field, message) {
-        clearFieldError(field);
-        
-        const errorDiv = document.createElement('div');
-        errorDiv.className = 'field-error';
-        errorDiv.style.cssText = `
-            color: #ff5555;
-            font-size: 12px;
-            margin-top: 8px;
-            display: flex;
-            align-items: center;
-            gap: 6px;
-        `;
-        errorDiv.innerHTML = `
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
-                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
-            </svg>
-            ${message}
-        `;
-        
-        field.parentNode.appendChild(errorDiv);
-        field.style.borderColor = '#ff5555';
-    }
-    
-    function clearFieldError(field) {
-        const existingError = field.parentNode.querySelector('.field-error');
-        if (existingError) {
-            existingError.remove();
-        }
-        field.style.borderColor = '';
-    }
-    
-    function showFormErrors(errors) {
-        clearFormErrors();
-        
-        const errorContainer = document.createElement('div');
-        errorContainer.className = 'form-errors';
-        errorContainer.style.cssText = `
-            color: #ff5555;
-            font-size: 14px;
-            margin-bottom: 20px;
-            padding: 16px;
-            background: rgba(255, 85, 85, 0.1);
-            border: 1px solid rgba(255, 85, 85, 0.2);
-            border-radius: 8px;
-        `;
-        
-        const errorList = document.createElement('ul');
-        errorList.style.cssText = `
-            margin: 0;
-            padding-left: 20px;
-        `;
-        
-        errors.forEach(error => {
-            const errorItem = document.createElement('li');
-            errorItem.textContent = error;
-            errorList.appendChild(errorItem);
-        });
-        
-        errorContainer.appendChild(errorList);
-        form.insertBefore(errorContainer, submitBtn);
-    }
-    
-    function clearFormErrors() {
-        const existingErrors = form.querySelectorAll('.form-errors, .field-error');
-        existingErrors.forEach(error => error.remove());
-        
-        const inputs = form.querySelectorAll('input, textarea');
-        inputs.forEach(input => {
-            input.style.borderColor = '';
-        });
-    }
-    
-    function showFormSuccess() {
-        clearFormErrors();
-        
-        const successDiv = document.createElement('div');
-        successDiv.className = 'form-success';
-        successDiv.style.cssText = `
-            color: #10b981;
-            font-size: 14px;
-            margin-bottom: 20px;
-            padding: 16px;
-            background: rgba(16, 185, 129, 0.1);
-            border: 1px solid rgba(16, 185, 129, 0.2);
-            border-radius: 8px;
-            text-align: center;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 10px;
-        `;
-        
-        successDiv.innerHTML = `
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
-                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
-            </svg>
-            <div>
-                <strong>Email client opened successfully!</strong><br>
-                Please send the email from your email client. I'll get back to you soon!
-            </div>
-        `;
-        
-        form.insertBefore(successDiv, submitBtn);
-        
-        // Remove success message after 8 seconds
-        setTimeout(() => {
-            if (successDiv && successDiv.parentNode) {
-                successDiv.remove();
-            }
-        }, 8000);
     }
 }
 
@@ -457,329 +382,100 @@ function initTypewriter() {
     const typewriterElement = document.getElementById('typewriter');
     if (!typewriterElement) return;
     
-    const text = typewriterElement.textContent;
-    
-    // Clear the text and start typing effect
-    typewriterElement.textContent = '';
-    typewriterElement.style.borderRight = '2px solid var(--portfolio-primary)';
-    
+    const text = 'VLSI Designer & Hardware Innovation Enthusiast';
     let i = 0;
-    const typingSpeed = 100;
-    const pauseDuration = 2000;
     
     function typeWriter() {
         if (i < text.length) {
-            typewriterElement.textContent += text.charAt(i);
+            typewriterElement.innerHTML = text.substring(0, i + 1) + '<span class="cursor">|</span>';
             i++;
-            setTimeout(typeWriter, typingSpeed);
+            setTimeout(typeWriter, 100);
         } else {
-            // Blinking cursor effect
-            setTimeout(() => {
-                typewriterElement.style.borderRight = 'none';
-            }, pauseDuration);
+            typewriterElement.innerHTML = text + '<span class="cursor blink">|</span>';
         }
     }
     
-    // Start typing after a brief delay
-    setTimeout(typeWriter, 500);
+    setTimeout(typeWriter, 1000);
 }
 
-// Blog Cards Interactions
+// Blog Cards Interaction
 function initBlogCards() {
     const blogCards = document.querySelectorAll('.blog-card');
     
     blogCards.forEach(card => {
-        // Add hover effect and click interaction
-        card.addEventListener('click', function(e) {
-            e.preventDefault();
-            
-            // For now, show a "coming soon" message
-            const category = this.querySelector('.blog-category').textContent;
-            const title = this.querySelector('h3').textContent;
-            
-            // Create a modal-like notification
-            showBlogComingSoon(title, category);
-        });
-        
-        // Add ripple effect on click
-        card.addEventListener('click', function(e) {
-            const ripple = document.createElement('div');
-            const rect = card.getBoundingClientRect();
-            const size = Math.max(rect.width, rect.height);
-            const x = e.clientX - rect.left - size / 2;
-            const y = e.clientY - rect.top - size / 2;
-            
-            ripple.style.cssText = `
-                position: absolute;
-                width: ${size}px;
-                height: ${size}px;
-                left: ${x}px;
-                top: ${y}px;
-                background: rgba(96, 165, 250, 0.1);
-                border-radius: 50%;
-                transform: scale(0);
-                animation: ripple 0.6s ease-out;
-                pointer-events: none;
-                z-index: 1;
-            `;
-            
-            card.style.position = 'relative';
-            card.style.overflow = 'hidden';
-            card.appendChild(ripple);
-            
-            setTimeout(() => {
-                if (ripple && ripple.parentNode) {
-                    ripple.remove();
-                }
-            }, 600);
+        card.addEventListener('click', function() {
+            showNotification('This blog post is currently in development. Stay tuned for technical insights on VLSI design and hardware engineering!', 'info');
         });
     });
-    
-    function showBlogComingSoon(title, category) {
-        // Create notification
-        const notification = document.createElement('div');
-        notification.style.cssText = `
-            position: fixed;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            background: var(--color-surface);
-            border: 2px solid var(--color-border);
-            border-radius: 16px;
-            padding: 32px;
-            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
-            z-index: 10000;
-            max-width: 500px;
-            text-align: center;
-            animation: slideIn 0.3s ease-out;
-        `;
-        
-        notification.innerHTML = `
-            <div style="font-size: 3rem; margin-bottom: 16px;">🚧</div>
-            <h3 style="color: var(--color-text); margin-bottom: 12px; font-size: 20px;">${title}</h3>
-            <p style="color: var(--color-text-secondary); margin-bottom: 24px; line-height: 1.6;">
-                This blog post is currently in development. Stay tuned for technical insights on VLSI design and hardware engineering!
-            </p>
-            <button onclick="this.parentElement.parentElement.remove(); document.querySelector('.blog-overlay').remove();" 
-                    style="background: var(--portfolio-primary); color: white; border: none; padding: 12px 24px; border-radius: 8px; cursor: pointer; font-weight: 500;">
-                Got it!
-            </button>
-        `;
-        
-        // Create overlay
-        const overlay = document.createElement('div');
-        overlay.className = 'blog-overlay';
-        overlay.style.cssText = `
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.5);
-            z-index: 9999;
-            animation: fadeIn 0.3s ease-out;
-        `;
-        
-        // Add to DOM
-        document.body.appendChild(overlay);
-        document.body.appendChild(notification);
-        
-        // Remove on overlay click
-        overlay.addEventListener('click', () => {
-            document.body.removeChild(overlay);
+}
+
+// Notification System
+function showNotification(message, type = 'info') {
+    // Remove existing notifications
+    const existingNotifications = document.querySelectorAll('.notification');
+    existingNotifications.forEach(notification => {
+        if (document.body.contains(notification)) {
             document.body.removeChild(notification);
-        });
-        
-        // Auto remove after 10 seconds
-        setTimeout(() => {
-            if (document.body.contains(notification)) {
-                document.body.removeChild(overlay);
-                document.body.removeChild(notification);
-            }
-        }, 10000);
-    }
-}
-
-// Resume Download Functionality
-function initResume() {
-    // This function can be called from the HTML button
-    window.downloadResume = function() {
-        // For now, show a message about resume availability
-        const notification = document.createElement('div');
-        notification.style.cssText = `
-            position: fixed;
-            top: 20px;
-            right: 20px;
-            background: var(--color-surface);
-            border: 2px solid var(--portfolio-primary);
-            border-radius: 12px;
-            padding: 20px;
-            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
-            z-index: 10000;
-            max-width: 350px;
-            animation: slideInRight 0.3s ease-out;
-        `;
-        
-        notification.innerHTML = `
-            <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 12px;">
-                <span style="font-size: 1.5rem;">📄</span>
-                <strong style="color: var(--color-text);">Resume Download</strong>
-            </div>
-            <p style="color: var(--color-text-secondary); margin: 0; line-height: 1.5;">
-                Resume will be available for download soon! For now, please connect with me via email or LinkedIn for my latest resume.
-            </p>
-        `;
-        
-        document.body.appendChild(notification);
-        
-        // Auto remove after 6 seconds
-        setTimeout(() => {
-            if (document.body.contains(notification)) {
-                notification.style.animation = 'slideOutRight 0.3s ease-in';
-                setTimeout(() => {
-                    if (document.body.contains(notification)) {
-                        document.body.removeChild(notification);
-                    }
-                }, 300);
-            }
-        }, 6000);
-    };
-}
-
-// Project Card Interactions
-document.addEventListener('DOMContentLoaded', function() {
-    const projectCards = document.querySelectorAll('.project-card');
+        }
+    });
     
-    projectCards.forEach(card => {
-        // Add ripple effect on click
-        card.addEventListener('click', function(e) {
-            // Don't create ripple if clicking on tech tags or status
-            if (e.target.classList.contains('tech-tag') || e.target.classList.contains('project-status')) {
-                return;
-            }
-            
-            const ripple = document.createElement('div');
-            const rect = card.getBoundingClientRect();
-            const size = Math.max(rect.width, rect.height);
-            const x = e.clientX - rect.left - size / 2;
-            const y = e.clientY - rect.top - size / 2;
-            
-            ripple.style.cssText = `
-                position: absolute;
-                width: ${size}px;
-                height: ${size}px;
-                left: ${x}px;
-                top: ${y}px;
-                background: rgba(96, 165, 250, 0.1);
-                border-radius: 50%;
-                transform: scale(0);
-                animation: ripple 0.6s ease-out;
-                pointer-events: none;
-                z-index: 1;
-            `;
-            
-            card.style.position = 'relative';
-            card.style.overflow = 'hidden';
-            card.appendChild(ripple);
-            
+    const notification = document.createElement('div');
+    notification.className = `notification notification--${type}`;
+    
+    // Get current theme for proper colors
+    const currentTheme = document.documentElement.getAttribute('data-color-scheme') || 'dark';
+    
+    notification.style.cssText = `
+        position: fixed;
+        top: 20px;
+        right: 20px;
+        background: var(--color-surface);
+        color: var(--color-text);
+        padding: 16px 20px;
+        border-radius: 8px;
+        box-shadow: var(--shadow-lg);
+        z-index: 10000;
+        max-width: 350px;
+        animation: slideInRight 0.3s ease-out;
+        border-left: 4px solid ${type === 'error' ? 'var(--color-error)' : type === 'success' ? 'var(--color-success)' : 'var(--color-info)'};
+        font-size: 14px;
+        line-height: 1.4;
+        border: 1px solid var(--color-border);
+    `;
+    
+    const icon = type === 'success' ? '✅' : type === 'error' ? '❌' : 'ℹ️';
+    notification.innerHTML = `<strong>${icon}</strong> ${message}`;
+    
+    document.body.appendChild(notification);
+    
+    // Auto remove after 5 seconds
+    setTimeout(() => {
+        if (document.body.contains(notification)) {
+            notification.style.animation = 'slideOutRight 0.3s ease-in';
             setTimeout(() => {
-                if (ripple && ripple.parentNode) {
-                    ripple.remove();
+                if (document.body.contains(notification)) {
+                    document.body.removeChild(notification);
                 }
-            }, 600);
-        });
-        
-        // Hover effect for tech tags
-        const techTags = card.querySelectorAll('.tech-tag');
-        techTags.forEach(tag => {
-            tag.addEventListener('mouseenter', function() {
-                this.style.transform = 'translateY(-2px) scale(1.05)';
-                this.style.transition = 'all 0.2s ease-out';
-            });
-            
-            tag.addEventListener('mouseleave', function() {
-                this.style.transform = 'translateY(0) scale(1)';
-            });
-        });
-    });
-});
-
-// Skill Tags Animation
-document.addEventListener('DOMContentLoaded', function() {
-    // Animate skill tags on scroll
-    const skillObserver = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                const skillTags = entry.target.querySelectorAll('.skill-tag');
-                skillTags.forEach((tag, index) => {
-                    tag.style.opacity = '0';
-                    tag.style.transform = 'translateY(20px)';
-                    
-                    setTimeout(() => {
-                        tag.style.opacity = '1';
-                        tag.style.transform = 'translateY(0)';
-                        tag.style.transition = `all 0.5s ease-out`;
-                    }, index * 100);
-                });
-            }
-        });
-    }, { threshold: 0.5 });
+            }, 300);
+        }
+    }, 5000);
     
-    document.querySelectorAll('.skill-category').forEach(category => {
-        skillObserver.observe(category);
+    // Click to dismiss
+    notification.addEventListener('click', () => {
+        if (document.body.contains(notification)) {
+            notification.style.animation = 'slideOutRight 0.3s ease-in';
+            setTimeout(() => {
+                if (document.body.contains(notification)) {
+                    document.body.removeChild(notification);
+                }
+            }, 300);
+        }
     });
-});
+}
 
-// Achievement Timeline Animation
-document.addEventListener('DOMContentLoaded', function() {
-    const achievementItems = document.querySelectorAll('.achievement-item');
-    
-    const achievementObserver = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.style.opacity = '0';
-                entry.target.style.transform = 'translateX(-50px)';
-                entry.target.style.transition = 'all 0.6s ease-out';
-                
-                setTimeout(() => {
-                    entry.target.style.opacity = '1';
-                    entry.target.style.transform = 'translateX(0)';
-                }, 200);
-            }
-        });
-    }, { threshold: 0.3 });
-    
-    achievementItems.forEach(item => {
-        achievementObserver.observe(item);
-    });
-});
-
-// Add enhanced CSS animations dynamically
+// Enhanced animations and styles
 const style = document.createElement('style');
 style.textContent = `
-    @keyframes ripple {
-        to {
-            transform: scale(2);
-            opacity: 0;
-        }
-    }
-    
-    @keyframes slideIn {
-        from {
-            opacity: 0;
-            transform: translate(-50%, -50%) scale(0.9);
-        }
-        to {
-            opacity: 1;
-            transform: translate(-50%, -50%) scale(1);
-        }
-    }
-    
-    @keyframes fadeIn {
-        from { opacity: 0; }
-        to { opacity: 1; }
-    }
-    
     @keyframes slideInRight {
         from {
             opacity: 0;
@@ -802,98 +498,132 @@ style.textContent = `
         }
     }
     
-    @keyframes slideInLeft {
-        from {
-            opacity: 0;
-            transform: translateX(-50px);
-        }
-        to {
-            opacity: 1;
-            transform: translateX(0);
-        }
+    .cursor {
+        animation: blink 1s infinite;
     }
     
-    .navbar.scrolled {
-        background: rgba(var(--color-surface-rgb, 255, 255, 253), 0.98) !important;
-        box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
-        backdrop-filter: blur(20px);
+    @keyframes blink {
+        0%, 50% { opacity: 1; }
+        51%, 100% { opacity: 0; }
+    }
+    
+    .profile-photo-section {
+        margin-top: 2rem;
+        text-align: center;
+    }
+    
+    .profile-photo-upload {
+        display: inline-block;
+    }
+    
+    .profile-photo-placeholder {
+        width: 120px;
+        height: 120px;
+        border-radius: 50%;
+        overflow: hidden;
+        margin: 0 auto 1rem;
+        position: relative;
+        border: 3px solid var(--color-primary);
+        background: var(--color-surface);
+        transition: all 0.3s ease;
+    }
+    
+    .profile-photo-placeholder:hover {
+        transform: scale(1.05);
+        border-color: var(--color-primary-hover);
+    }
+    
+    #profile-photo {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: opacity 0.3s ease;
+    }
+    
+    .photo-placeholder-text {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        height: 100%;
+        color: var(--color-text-secondary);
+    }
+    
+    .photo-placeholder-text span {
+        font-size: 2rem;
+        margin-bottom: 0.5rem;
+    }
+    
+    .photo-placeholder-text p {
+        margin: 0;
+        font-size: 0.8rem;
+        font-weight: var(--font-weight-medium);
+    }
+    
+    .upload-photo-btn {
+        background: var(--color-secondary);
+        color: var(--color-text);
+        border: 1px solid var(--color-border);
+        padding: 10px 20px;
+        border-radius: var(--radius-base);
+        cursor: pointer;
+        font-size: var(--font-size-sm);
+        font-weight: var(--font-weight-medium);
+        transition: all var(--duration-fast) var(--ease-standard);
+        box-shadow: var(--shadow-xs);
+    }
+    
+    .upload-photo-btn:hover {
+        background: var(--color-secondary-hover);
+        transform: translateY(-2px);
+        box-shadow: var(--shadow-md);
+    }
+    
+    .notification {
+        cursor: pointer;
+        user-select: none;
+    }
+    
+    .notification:hover {
+        transform: translateX(-5px);
+        box-shadow: var(--shadow-xl);
+    }
+    
+    /* Mobile responsive adjustments for profile photo */
+    @media (max-width: 768px) {
+        .profile-photo-section {
+            margin-top: 1.5rem;
+        }
+        
+        .profile-photo-placeholder {
+            width: 100px;
+            height: 100px;
+        }
+        
+        .upload-photo-btn {
+            padding: 8px 16px;
+            font-size: 0.85rem;
+        }
     }
 `;
 document.head.appendChild(style);
 
-// Utility Functions
+// Performance optimization
 function debounce(func, wait, immediate) {
     let timeout;
     return function executedFunction() {
         const context = this;
         const args = arguments;
-        
         const later = function() {
             timeout = null;
             if (!immediate) func.apply(context, args);
         };
-        
         const callNow = immediate && !timeout;
         clearTimeout(timeout);
         timeout = setTimeout(later, wait);
-        
         if (callNow) func.apply(context, args);
     };
 }
-
-// Performance optimization for scroll events
-const optimizedScrollHandler = debounce(function() {
-    // Any additional scroll handling can go here
-}, 10);
-
-window.addEventListener('scroll', optimizedScrollHandler);
-
-// Accessibility enhancements
-document.addEventListener('DOMContentLoaded', function() {
-    // Add focus indicators for keyboard navigation
-    const focusableElements = document.querySelectorAll('button, a, input, textarea, select, [tabindex]:not([tabindex="-1"])');
-    
-    focusableElements.forEach(element => {
-        element.addEventListener('focus', function() {
-            this.style.outline = '2px solid var(--portfolio-primary)';
-            this.style.outlineOffset = '2px';
-        });
-        
-        element.addEventListener('blur', function() {
-            this.style.outline = '';
-            this.style.outlineOffset = '';
-        });
-    });
-    
-    // Skip to main content link
-    const skipLink = document.createElement('a');
-    skipLink.href = '#home';
-    skipLink.textContent = 'Skip to main content';
-    skipLink.className = 'sr-only';
-    skipLink.style.cssText = `
-        position: absolute;
-        top: -40px;
-        left: 6px;
-        background: var(--portfolio-primary);
-        color: white;
-        padding: 8px 12px;
-        text-decoration: none;
-        border-radius: 4px;
-        z-index: 9999;
-        transition: top 0.3s;
-        font-weight: 500;
-    `;
-    
-    skipLink.addEventListener('focus', function() {
-        this.style.top = '6px';
-    });
-    
-    skipLink.addEventListener('blur', function() {
-        this.style.top = '-40px';
-    });
-    
-    document.body.insertBefore(skipLink, document.body.firstChild);
-});
 
 // Enhanced error handling
 window.addEventListener('error', function(e) {
@@ -901,6 +631,7 @@ window.addEventListener('error', function(e) {
 });
 
 // Log successful initialization
-console.log('🚀 Portfolio loaded successfully with enhanced animations and functionality!');
-console.log('✨ Features: Dark/Light theme, Smooth scrolling, Project filtering, Contact form, Animations');
-console.log('📧 Contact form configured for: kaustubhofficial.kp@gmail.com');
+console.log('🚀 Enhanced Portfolio loaded successfully!');
+console.log('✨ Features: Fixed theme toggle, Photo upload, Resume download, Enhanced animations');
+console.log('📧 Contact: kaustubhofficial.kp@gmail.com');
+console.log('📄 Resume: Direct download from GitHub');
