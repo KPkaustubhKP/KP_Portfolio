@@ -7,6 +7,8 @@
     <meta name="description" content="Passionate about VLSI design, semiconductor technology, and AI hardware acceleration. Currently pursuing Bachelor's in Electronics and Communication Engineering with specialization in VLSI Design and Technology at Manipal Institute of Technology.">
     
     <link rel="stylesheet" href="style.css">
+    
+    <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -18,6 +20,7 @@
             <div class="nav-brand">
                 <a href="#home" class="nav-logo">KP</a>
             </div>
+            
             <ul class="nav-menu" id="nav-menu">
                 <li><a href="#home" class="nav-link">Home</a></li>
                 <li><a href="#about" class="nav-link">About</a></li>
@@ -27,11 +30,13 @@
                 <li><a href="#resume" class="nav-link">Resume</a></li>
                 <li><a href="#contact" class="nav-link">Contact</a></li>
             </ul>
+            
             <div class="nav-controls">
                 <button class="theme-toggle" id="theme-toggle" aria-label="Toggle theme">
                     <span class="theme-toggle-icon">☀️</span>
                 </button>
             </div>
+            
             <div class="nav-hamburger" id="nav-hamburger">
                 <span></span>
                 <span></span>
@@ -56,21 +61,25 @@
             <div class="circuit-traces"></div>
         </div>
         <div class="hero-overlay"></div>
+        
         <div class="container">
             <div class="hero-content">
                 <div class="hero-title">
                     <span class="hero-name">Kaustubh Pandey</span>
                 </div>
                 <div class="hero-tagline" id="typewriter">VLSI Designer & Hardware Innovation Enthusiast</div>
+                
                 <p class="hero-description">
                     Passionate about VLSI design, semiconductor technology, and AI hardware acceleration. 
                     Currently pursuing Bachelor's in Electronics and Communication Engineering with 
                     specialization in VLSI Design and Technology at Manipal Institute of Technology.
                 </p>
+                
                 <div class="hero-buttons">
                     <a href="#projects" class="btn btn--primary btn--lg">View My Work</a>
                     <a href="#contact" class="btn btn--outline btn--lg">Get In Touch</a>
                 </div>
+                
                 <!-- Profile Photo Section -->
                 <div class="profile-photo-section">
                     <div class="profile-photo-upload">
@@ -90,8 +99,372 @@
     </section>
 
     <!-- About Section -->
-    <!-- (all your about/project/skills/blogs/achievements/contact code here remains the same!) -->
-    <!-- ... (no changes needed, keep rest of site HTML as is) ... -->
+    <section id="about" class="about">
+        <div class="container">
+            <h2 class="section-title">About Me</h2>
+            <div class="about-content">
+                <div class="about-text">
+                    <p>I'm an Electronics & Communication Engineering student specializing in VLSI Design & Technology at Manipal Institute of Technology. My passion lies in creating innovative hardware solutions and exploring the fascinating world of semiconductor technology.</p>
+                    
+                    <p>Currently, I'm contributing to <strong>Project MANAS</strong> as part of the SNA (Sensor and Actuation) subsystem team, where I work on hardware development and sensor integration for autonomous vehicle systems.</p>
+                    
+                    <div class="about-interests">
+                        <h3>My Interests</h3>
+                        <ul>
+                            <li>VLSI Design & Semiconductor Technology</li>
+                            <li>AI Hardware Acceleration & TPUs</li>
+                            <li>Neuromorphic Computing Architecture</li>
+                            <li>High-Speed PCB Design</li>
+                            <li>FPGA Development & RTL Design</li>
+                            <li>Autonomous Vehicle Hardware</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="about-image">
+                    <div class="profile-image-container">
+                        <img src="profile-photo.jpg" alt="Kaustubh Pandey - Profile Photo" class="profile-image">
+                        <div class="image-border"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="projects">
+        <div class="container">
+            <h2 class="section-title">Featured Projects</h2>
+            
+            <!-- Featured Projects Grid -->
+            <div class="projects-grid">
+                <div class="project-card featured" data-category="hardware">
+                    <div class="project-header">
+                        <div>
+                            <h3>VLSI System Design - Thejas32 Evaluation Board</h3>
+                            <div class="project-role">PCB Design Intern</div>
+                        </div>
+                        <span class="project-status completed">COMPLETED</span>
+                    </div>
+                    
+                    <p class="project-description">
+                        Designed and laid out the evaluation board for the Thejas32 processor (by Vega Processor & CDAC) using KiCad. Applied high-speed routing and impedance control techniques for optimal signal integrity and generated manufacturing-ready Gerber files.
+                    </p>
+                    
+                    <div class="project-technologies">
+                        <span class="tech-tag">KiCad</span>
+                        <span class="tech-tag">PCB Design</span>
+                        <span class="tech-tag">High-Speed Routing</span>
+                        <span class="tech-tag">Impedance Control</span>
+                        <span class="tech-tag">Gerber Files</span>
+                    </div>
+                </div>
+
+                <div class="project-card featured" data-category="hardware">
+                    <div class="project-header">
+                        <div>
+                            <h3>Project MANAS - Autonomous UGV Hardware</h3>
+                            <div class="project-role">Hardware Engineer</div>
+                        </div>
+                        <span class="project-status ongoing">ONGOING</span>
+                    </div>
+                    
+                    <p class="project-description">
+                        Designed power distribution boards (PDB) for autonomous UGVs with robust thermal handling and high-current switching. Developed motor/microcontroller interface boards with CAN-bus communication.
+                    </p>
+                    
+                    <div class="project-technologies">
+                        <span class="tech-tag">Power Electronics</span>
+                        <span class="tech-tag">INA226</span>
+                        <span class="tech-tag">CAN-bus</span>
+                        <span class="tech-tag">Thermal Management</span>
+                    </div>
+                </div>
+
+                <div class="project-card featured" data-category="vlsi">
+                    <div class="project-header">
+                        <div>
+                            <h3>Digital PID Motor Controller</h3>
+                            <div class="project-role">VLSI Developer</div>
+                        </div>
+                        <span class="project-status completed">COMPLETED</span>
+                    </div>
+                    
+                    <p class="project-description">
+                        Designed and implemented a digital PID controller in Verilog to regulate DC motor speed via encoder feedback. Synthesized the design with Vivado for FPGA deployment and validated functionality through comprehensive simulation. Performed physical design using Cadence Genus for synthesis and Innovus for place & route.
+                    </p>
+                    
+                    <div class="project-technologies">
+                        <span class="tech-tag">Verilog</span>
+                        <span class="tech-tag">Vivado</span>
+                        <span class="tech-tag">FPGA</span>
+                        <span class="tech-tag">Cadence Genus</span>
+                        <span class="tech-tag">Cadence Innovus</span>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- All Projects Section -->
+            <h2 class="section-subtitle">All Projects</h2>
+            <div class="project-filters">
+                <button class="filter-btn active" data-filter="all">All</button>
+                <button class="filter-btn" data-filter="vlsi">VLSI</button>
+                <button class="filter-btn" data-filter="hardware">Hardware</button>
+                <button class="filter-btn" data-filter="fpga">FPGA</button>
+            </div>
+            
+            <div class="all-projects-grid">
+                <div class="project-card" data-category="hardware">
+                    <div class="project-header">
+                        <div>
+                            <h3>Thejas32 Evaluation Board</h3>
+                            <div class="project-role">Hardware Project</div>
+                        </div>
+                        <span class="project-status completed">COMPLETED</span>
+                    </div>
+                    
+                    <p class="project-description">
+                        Designed and laid out the evaluation board for the Thejas32 processor using KiCad with high-speed routing and impedance control.
+                    </p>
+                    
+                    <div class="project-technologies">
+                        <span class="tech-tag">KiCad</span>
+                        <span class="tech-tag">PCB Design</span>
+                        <span class="tech-tag">High-Speed Routing</span>
+                    </div>
+                </div>
+                
+                <div class="project-card" data-category="hardware">
+                    <div class="project-header">
+                        <div>
+                            <h3>Power Distribution System</h3>
+                            <div class="project-role">Hardware Project</div>
+                        </div>
+                        <span class="project-status ongoing">ONGOING</span>
+                    </div>
+                    
+                    <p class="project-description">
+                        Power distribution boards with thermal management and current sensing for autonomous vehicles.
+                    </p>
+                    
+                    <div class="project-technologies">
+                        <span class="tech-tag">Power Electronics</span>
+                        <span class="tech-tag">INA226</span>
+                        <span class="tech-tag">CAN-bus</span>
+                    </div>
+                </div>
+
+                <div class="project-card" data-category="vlsi">
+                    <div class="project-header">
+                        <div>
+                            <h3>PID Controller</h3>
+                            <div class="project-role">VLSI Project</div>
+                        </div>
+                        <span class="project-status completed">COMPLETED</span>
+                    </div>
+                    
+                    <p class="project-description">
+                        Verilog-based PID controller for DC motor speed regulation with encoder feedback.
+                    </p>
+                    
+                    <div class="project-technologies">
+                        <span class="tech-tag">Verilog</span>
+                        <span class="tech-tag">Vivado</span>
+                        <span class="tech-tag">FPGA</span>
+                        <span class="tech-tag">Cadence</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills" class="skills">
+        <div class="container">
+            <h2 class="section-title">Skills & Expertise</h2>
+            <div class="skills-grid">
+                <div class="skill-category">
+                    <h3>VLSI Design</h3>
+                    <div class="skill-tags">
+                        <span class="skill-tag">Verilog</span>
+                        <span class="skill-tag">Vivado</span>
+                        <span class="skill-tag">Icarus Verilog</span>
+                        <span class="skill-tag">GTKWave</span>
+                        <span class="skill-tag">Cadence Genus</span>
+                        <span class="skill-tag">Cadence Innovus</span>
+                    </div>
+                </div>
+
+                <div class="skill-category">
+                    <h3>Hardware Design</h3>
+                    <div class="skill-tags">
+                        <span class="skill-tag">PCB Design</span>
+                        <span class="skill-tag">KiCad</span>
+                        <span class="skill-tag">High-Speed Routing</span>
+                        <span class="skill-tag">Power Electronics</span>
+                        <span class="skill-tag">Impedance Control</span>
+                    </div>
+                </div>
+
+                <div class="skill-category">
+                    <h3>Programming</h3>
+                    <div class="skill-tags">
+                        <span class="skill-tag">Verilog</span>
+                        <span class="skill-tag">Python</span>
+                        <span class="skill-tag">C/C++</span>
+                        <span class="skill-tag">MATLAB</span>
+                        <span class="skill-tag">JavaScript</span>
+                    </div>
+                </div>
+
+                <div class="skill-category">
+                    <h3>Tools & Technologies</h3>
+                    <div class="skill-tags">
+                        <span class="skill-tag">FPGA</span>
+                        <span class="skill-tag">PID Control</span>
+                        <span class="skill-tag">CAN-bus</span>
+                        <span class="skill-tag">Thermal Management</span>
+                        <span class="skill-tag">Signal Integrity</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Blogs Section -->
+    <section id="blogs" class="blogs">
+        <div class="container">
+            <h2 class="section-title">Technical Blogs</h2>
+            <p class="blogs-intro">Sharing insights on VLSI design, hardware development, and emerging technologies in semiconductor engineering.</p>
+            
+            <div class="blogs-grid">
+                <div class="blog-card">
+                    <div class="blog-image">
+                        <div class="blog-placeholder">
+                            <span>🔧</span>
+                            <p>RTL-to-GDSII</p>
+                        </div>
+                    </div>
+                    <div class="blog-content">
+                        <span class="blog-category">VLSI Design</span>
+                        <h3>Understanding RTL-to-GDSII Flow: A Complete Guide</h3>
+                        <p class="blog-excerpt">
+                            Exploring the complete semiconductor design flow from Register Transfer Level to GDSII layout, covering synthesis, place & route, and physical verification steps.
+                        </p>
+                        <div class="blog-meta">
+                            <span class="blog-date">Coming Soon</span>
+                            <span class="blog-read-time">8 min read</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="blog-card">
+                    <div class="blog-image">
+                        <div class="blog-placeholder">
+                            <span>⚡</span>
+                            <p>Signal Integrity</p>
+                        </div>
+                    </div>
+                    <div class="blog-content">
+                        <span class="blog-category">Hardware Design</span>
+                        <h3>High-Speed PCB Design: Signal Integrity Fundamentals</h3>
+                        <p class="blog-excerpt">
+                            Deep dive into signal integrity challenges in high-speed PCB design, covering transmission lines, crosstalk, and design guidelines for optimal performance.
+                        </p>
+                        <div class="blog-meta">
+                            <span class="blog-date">Coming Soon</span>
+                            <span class="blog-read-time">12 min read</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="blog-card">
+                    <div class="blog-image">
+                        <div class="blog-placeholder">
+                            <span>🤖</span>
+                            <p>AI Hardware</p>
+                        </div>
+                    </div>
+                    <div class="blog-content">
+                        <span class="blog-category">AI Hardware</span>
+                        <h3>The Evolution of AI Compute: From CPUs to Neuromorphic Chips</h3>
+                        <p class="blog-excerpt">
+                            Analyzing the evolution of AI compute hardware, from traditional processors to specialized AI accelerators, TPUs, and neuromorphic architectures.
+                        </p>
+                        <div class="blog-meta">
+                            <span class="blog-date">Coming Soon</span>
+                            <span class="blog-read-time">15 min read</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="blog-card">
+                    <div class="blog-image">
+                        <div class="blog-placeholder">
+                            <span>⚡</span>
+                            <p>FPGA Development</p>
+                        </div>
+                    </div>
+                    <div class="blog-content">
+                        <span class="blog-category">FPGA</span>
+                        <h3>FPGA Development with Xilinx Vivado: A Practical Guide</h3>
+                        <p class="blog-excerpt">
+                            Comprehensive guide to FPGA development using Xilinx Vivado, covering project setup, synthesis optimization, and debugging techniques.
+                        </p>
+                        <div class="blog-meta">
+                            <span class="blog-date">Coming Soon</span>
+                            <span class="blog-read-time">10 min read</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="blog-card">
+                    <div class="blog-image">
+                        <div class="blog-placeholder">
+                            <span>🚗</span>
+                            <p>Project MANAS</p>
+                        </div>
+                    </div>
+                    <div class="blog-content">
+                        <span class="blog-category">Hardware Engineering</span>
+                        <h3>Building Autonomous UGV Hardware: Project MANAS Insights</h3>
+                        <p class="blog-excerpt">
+                            Behind-the-scenes look at Project MANAS hardware development, covering power distribution, sensor integration, and CAN bus implementation.
+                        </p>
+                        <div class="blog-meta">
+                            <span class="blog-date">Coming Soon</span>
+                            <span class="blog-read-time">14 min read</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="blog-card">
+                    <div class="blog-image">
+                        <div class="blog-placeholder">
+                            <span>💾</span>
+                            <p>Semiconductor Tech</p>
+                        </div>
+                    </div>
+                    <div class="blog-content">
+                        <span class="blog-category">Semiconductor Technology</span>
+                        <h3>Future of Semiconductor Technology: Trends and Innovations</h3>
+                        <p class="blog-excerpt">
+                            Exploring emerging trends in semiconductor technology, from EUV lithography to quantum computing implications for chip design.
+                        </p>
+                        <div class="blog-meta">
+                            <span class="blog-date">Coming Soon</span>
+                            <span class="blog-read-time">11 min read</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="blogs-cta">
+                <p>More technical articles coming soon! Follow me on LinkedIn for updates.</p>
+                <a href="https://www.linkedin.com/in/kaustubh-pandey-b42082218" target="_blank" class="btn btn--primary">Follow on LinkedIn</a>
+            </div>
+        </div>
+    </section>
 
     <!-- Resume Section -->
     <section id="resume" class="resume">
@@ -103,6 +476,7 @@
                         <span class="resume-icon">📄</span>
                         <h3>Professional Resume</h3>
                         <p>Get a comprehensive overview of my education, experience, projects, and technical skills in VLSI design and hardware development.</p>
+                        
                         <div class="resume-stats">
                             <div class="stat">
                                 <span class="stat-number">3+</span>
@@ -117,7 +491,8 @@
                                 <span class="stat-label">Technologies</span>
                             </div>
                         </div>
-                        <!-- FIX: Download Resume Button linked to your actual PDF -->
+                        
+                        <!-- FIXED: Working Resume Download Button -->
                         <a href="https://raw.githubusercontent.com/KPkaustubhKP/KPkaustubhKP.github.io/main/KP_Resume%20.pdf" 
                            class="btn btn--primary btn--lg" 
                            target="_blank"
@@ -128,15 +503,138 @@
         </div>
     </section>
 
-    <!-- (rest of your HTML remains unchanged...) -->
+    <!-- Achievements Section -->
+    <section class="achievements">
+        <div class="container">
+            <h2 class="section-title">Key Achievements</h2>
+            <div class="achievements-timeline">
+                <div class="achievement-item">
+                    <div class="achievement-year">2024</div>
+                    <div class="achievement-content">
+                        <span class="achievement-category">Competition</span>
+                        <h3>IGVC 2024 - 3rd Place</h3>
+                        <p>Secured 3rd place representing MIT with a fully autonomous UGV platform in the prestigious International Ground Vehicle Competition.</p>
+                    </div>
+                </div>
 
+                <div class="achievement-item">
+                    <div class="achievement-year">2024</div>
+                    <div class="achievement-content">
+                        <span class="achievement-category">Professional</span>
+                        <h3>Thejas32 Board Design Success</h3>
+                        <p>Successfully designed evaluation board for Thejas32 processor with advanced high-speed routing techniques.</p>
+                    </div>
+                </div>
+
+                <div class="achievement-item">
+                    <div class="achievement-year">2023</div>
+                    <div class="achievement-content">
+                        <span class="achievement-category">Team Achievement</span>
+                        <h3>Selected for Project MANAS</h3>
+                        <p>Chosen as hardware contributor for MIT's premier autonomous vehicle project, focusing on sensor and actuation subsystem.</p>
+                    </div>
+                </div>
+
+                <div class="achievement-item">
+                    <div class="achievement-year">2022</div>
+                    <div class="achievement-content">
+                        <span class="achievement-category">Academic</span>
+                        <h3>VLSI Specialization Admission</h3>
+                        <p>Admitted to prestigious VLSI Design & Technology specialization at Manipal Institute of Technology.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact">
+        <div class="container">
+            <h2 class="section-title">Let's Connect</h2>
+            <div class="contact-content">
+                <div class="contact-info">
+                    <h3>Get In Touch</h3>
+                    <p>I'm always interested in discussing VLSI design, hardware innovation, and potential collaboration opportunities.</p>
+                    
+                    <div class="contact-details">
+                        <div class="contact-item">
+                            <strong>Email:</strong>
+                            <span>kaustubhofficial.kp@gmail.com</span>
+                        </div>
+                        <div class="contact-item">
+                            <strong>LinkedIn:</strong>
+                            <span>linkedin.com/in/kaustubh-pandey-b42082218</span>
+                        </div>
+                        <div class="contact-item">
+                            <strong>GitHub:</strong>
+                            <span>github.com/KPkaustubhKP</span>
+                        </div>
+                        <div class="contact-item">
+                            <strong>Location:</strong>
+                            <span>Udupi, Karnataka, India</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="contact-form">
+                    <form id="contact-form">
+                        <div class="form-group">
+                            <label for="name" class="form-label">Name</label>
+                            <input type="text" id="name" name="name" class="form-control" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="email" class="form-label">Email</label>
+                            <input type="email" id="email" name="email" class="form-control" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="subject" class="form-label">Subject</label>
+                            <input type="text" id="subject" name="subject" class="form-control" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="message" class="form-label">Message</label>
+                            <textarea id="message" name="message" rows="5" class="form-control" required></textarea>
+                        </div>
+
+                        <button type="submit" class="btn btn--primary btn--full-width">Send Message</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
     <footer class="footer">
-        <!-- ... Footer remains same ... -->
         <div class="container">
             <div class="footer-content">
                 <p>&copy; 2024 Kaustubh Pandey. Built with passion for VLSI design and innovation.</p>
+                
                 <div class="footer-links">
-                    <!-- social links unchanged -->
+                    <a href="mailto:kaustubhofficial.kp@gmail.com" class="footer-icon" aria-label="Email">
+                        <svg viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>
+                        </svg>
+                    </a>
+                    
+                    <a href="https://www.linkedin.com/in/kaustubh-pandey-b42082218" target="_blank" class="footer-icon" aria-label="LinkedIn">
+                        <svg viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+                        </svg>
+                    </a>
+                    
+                    <a href="https://github.com/KPkaustubhKP" target="_blank" class="footer-icon" aria-label="GitHub">
+                        <svg viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+                        </svg>
+                    </a>
+                    
+                    <a href="https://instagram.com/yourinstagram" target="_blank" class="footer-icon" aria-label="Instagram">
+                        <svg viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+                        </svg>
+                    </a>
                 </div>
             </div>
         </div>
